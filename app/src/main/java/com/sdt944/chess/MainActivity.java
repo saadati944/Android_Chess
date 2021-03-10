@@ -2,6 +2,7 @@ package com.sdt944.chess;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnPlay_click(View view) {
-
+        Intent switchActivityIntent = new Intent(this, ChessBoard.class);
+        startActivity(switchActivityIntent);
     }
 }
