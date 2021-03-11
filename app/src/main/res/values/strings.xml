@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Chess</string>
     <string name="playButton">Play !!!</string>
+    <string name="king">King</string>
+    <string name="queen">Queen</string>
+    <string name="rook">Rook</string>
+    <string name="bishop">Bishop</string>
+    <string name="knight">Knight</string>
+    <string name="pawn">Pawn</string>
 </resources>

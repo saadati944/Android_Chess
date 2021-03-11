@@ -2,4 +2,10 @@
 <resources>
     <string name="app_name">شطرنج</string>
     <string name="playButton">شروع !!!</string>
+    <string name="king">شاه</string>
+    <string name="queen">وزیر</string>
+    <string name="rook">قلعه</string>
+    <string name="bishop">فیل</string>
+    <string name="knight">اسب</string>
+    <string name="pawn">سرباز</string>
 </resources>
