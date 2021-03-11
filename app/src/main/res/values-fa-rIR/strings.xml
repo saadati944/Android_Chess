@@ -8,4 +8,5 @@
     <string name="bishop">فیل</string>
     <string name="knight">اسب</string>
     <string name="pawn">سرباز</string>
+    <string name="promotionQuestion">تغییر سرباز با :</string>
 </resources>

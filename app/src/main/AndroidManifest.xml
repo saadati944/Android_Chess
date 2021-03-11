@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chess">
         <activity android:name=".ChessBoard"></activity>
+        <activity android:name=".PawnPromotion" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
