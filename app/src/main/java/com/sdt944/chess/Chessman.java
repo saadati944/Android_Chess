@@ -27,9 +27,11 @@ public abstract class Chessman {
     }
 
     private Point point;
+
     public ArrayList<Point> moves;
     public chessmanType type;
     public playerColor color;
+    public boolean isDead = false;
 
     public ArrayList<Point> getMoves()
     {
