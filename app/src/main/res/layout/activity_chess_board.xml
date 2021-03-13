@@ -6,85 +6,465 @@
     android:layout_height="match_parent"
     tools:context=".ChessBoard">
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1:1"
-        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <LinearLayout
+
+        <TableRow
+            android:id="@+id/boardRow1"
             android:layout_width="match_parent"
+
             android:layout_height="0dp"
             android:layout_weight="1">
 
             <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                style="@android:style/Widget.DeviceDefault.Button.Small"></Button>
+                android:onClick="btnTmpClick"></Button>
 
             <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                style="@android:style/Widget.DeviceDefault.Button.Small"></Button>
+                android:layout_weight="1"></Button>
 
             <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                style="@android:style/Widget.DeviceDefault.Button.Small"></Button>
-        </LinearLayout>
-        <LinearLayout
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow2"
             android:layout_width="match_parent"
+
             android:layout_height="0dp"
             android:layout_weight="1">
 
             <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                style="@android:style/Widget.DeviceDefault.Button.Small"></Button>
+                android:layout_weight="1"></Button>
 
             <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                style="@android:style/Widget.DeviceDefault.Button.Small"></Button>
+                android:layout_weight="1"></Button>
 
             <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                style="@android:style/Widget.DeviceDefault.Button.Small"></Button>
-        </LinearLayout>
-        <LinearLayout
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow3"
             android:layout_width="match_parent"
+
             android:layout_height="0dp"
             android:layout_weight="1">
 
             <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                style="@android:style/Widget.DeviceDefault.Button.Small"></Button>
+                android:layout_weight="1"></Button>
 
             <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                style="@android:style/Widget.DeviceDefault.Button.Small"></Button>
+                android:layout_weight="1"></Button>
 
             <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                style="@android:style/Widget.DeviceDefault.Button.Small"></Button>
-        </LinearLayout>
+                android:layout_weight="1"></Button>
 
-</LinearLayout>
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow4"
+            android:layout_width="match_parent"
+
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow5"
+            android:layout_width="match_parent"
+
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow6"
+            android:layout_width="match_parent"
+
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow7"
+            android:layout_width="match_parent"
+
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow8"
+            android:layout_width="match_parent"
+
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></Button>
+        </TableRow>
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
