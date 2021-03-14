@@ -38,6 +38,7 @@ public abstract class Chessman {
     public playerColor color;
     public boolean isDead = false;
     public ImageButton button;
+    public Chess parent;
     public int width;
     public int minDimension;
 
@@ -63,6 +64,8 @@ public abstract class Chessman {
 
         btn.setLayoutParams(lp);
         btn.setBackground(icon);
+
+        btn.setOnClickListener(v -> {parent.onManClick(this);});
 
         this.button = btn;
     }

@@ -4,7 +4,8 @@ import android.content.Context;
 
 public class Queen extends Chessman {
 
-    public Queen(Point p, playerColor color, int minDimension, Context ctx) {
+    public Queen(Point p, playerColor color, int minDimension, Context ctx, Chess parent) {
+        this.parent = parent;
         setPoint(p);
         type = chessmanType.Queen;
         this.color = color;

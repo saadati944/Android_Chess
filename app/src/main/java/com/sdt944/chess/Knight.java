@@ -3,7 +3,8 @@ package com.sdt944.chess;
 import android.content.Context;
 
 public class Knight extends Chessman {
-    public Knight(Point p, playerColor color, int minDimension, Context ctx) {
+    public Knight(Point p, playerColor color, int minDimension, Context ctx, Chess parent) {
+        this.parent = parent;
         setPoint(p);
         type = chessmanType.Knight;
         this.color = color;

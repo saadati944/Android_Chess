@@ -3,7 +3,8 @@ package com.sdt944.chess;
 import android.content.Context;
 
 public class Bishop extends Chessman {
-    public Bishop (Point p, playerColor color, int minDimension, Context ctx) {
+    public Bishop (Point p, playerColor color, int minDimension, Context ctx, Chess parent) {
+        this.parent = parent;
         setPoint(p);
         type = chessmanType.Bishop;
         this.color = color;

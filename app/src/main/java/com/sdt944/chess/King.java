@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public class King extends Chessman {
 
-    public King(Point p, playerColor color, int minDimension, Context ctx) {
+    public King(Point p, playerColor color, int minDimension, Context ctx, Chess parent) {
+        this.parent = parent;
         setPoint(p);
         type = chessmanType.King;
         this.color = color;

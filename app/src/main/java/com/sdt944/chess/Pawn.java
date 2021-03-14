@@ -4,7 +4,8 @@ import android.content.Context;
 
 public class Pawn extends Chessman {
     public boolean firstMove = true;
-    public Pawn(Point p, playerColor color, int minDimension, Context ctx) {
+    public Pawn(Point p, playerColor color, int minDimension, Context ctx, Chess parent) {
+        this.parent = parent;
         setPoint(p);
         type = chessmanType.Pawn;
         this.color = color;
