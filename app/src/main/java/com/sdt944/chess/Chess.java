@@ -2,6 +2,7 @@ package com.sdt944.chess;
 
 import android.content.Context;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -9,8 +10,10 @@ public class Chess {
     public ArrayList<Chessman> deadMen = new ArrayList<>();
     public Chessman[/*column - x*/][/*row - y*/] chessmen = new Chessman[8][8];
     public boolean whitePlayerTurn = true;
+    public Context ctx;
 
     public Chess(Context ctx, int minDimension, FrameLayout boardLayout) {
+        this.ctx = ctx;
         /*          BOARD
          *    <  X  >
          *    RkbQKBkR    WBWBWBWB
@@ -72,10 +75,13 @@ public class Chess {
         addMenToBoard(boardLayout);
     }
 
-    public void onManClick(Chessman man)
-    {
-
+    public void onManClick(Chessman man) {
+        Toast.makeText(ctx, "man click at x : "+man.getPoint().x+", y : "+man.getPoint().y, Toast.LENGTH_SHORT).show();
     }
+    public void onBoardClick(int x, int y) {
+        Toast.makeText(ctx, "board click at x : "+x+", y : "+y, Toast.LENGTH_SHORT).show();
+    }
+
 
     public boolean checkPoint(Point pt, Chessman man) {
         return checkPoint(pt.x, pt.y, man);

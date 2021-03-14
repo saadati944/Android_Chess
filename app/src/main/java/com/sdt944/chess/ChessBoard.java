@@ -9,6 +9,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
@@ -45,8 +46,17 @@ public class ChessBoard extends AppCompatActivity {
 
         chess = new Chess(this, displayMinDimensions, boardLayout);
 
+        findViewById(R.id.boardImage).setOnTouchListener(this::onTouch);
     }
 
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() != MotionEvent.ACTION_DOWN)
+            return false;
+        int t = displayMinDimensions/8;
+        //chess.onBoardClick((int)event.getX() % (displayMinDimensions/8), (int)event.getY()%(displayMinDimensions/8));
+        chess.onBoardClick(((int)event.getX())/t, ((int)event.getY())/t);
+        return true;
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
