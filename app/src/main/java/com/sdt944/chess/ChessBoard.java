@@ -1,42 +1,50 @@
 package com.sdt944.chess;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.view.ContextThemeWrapper;
+import android.text.Layout;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewManager;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
 public class ChessBoard extends AppCompatActivity {
+    public ImageButton[/*column*/][/*row*/] board = new ImageButton[8][8];
+    public FrameLayout boardLayout;
 
-    public View sampleCell;
-    public View[][] board = new View[8][8];
+    public Chess chess = null;
+    public int displayWidth, displayHeight, displayMinDimensions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chess_board);
-        sampleCell = findViewById(R.id.sampleCell);
 
-        createCells();
-    }
+        //set display params
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        displayHeight = displayMetrics.heightPixels;
+        displayWidth = displayMetrics.widthPixels;
+        displayMinDimensions = Math.min(displayWidth, displayHeight);
 
-    public void btnTmpClick(View view) {
-        startActivityForResult(new Intent(this, PawnPromotion.class), 0);
-        TableRow row1 = findViewById(R.id.boardRow1);
+        boardLayout = (FrameLayout)findViewById(R.id.boardLayout);
+
+        boardLayout.getLayoutParams().height = displayMinDimensions;
+        boardLayout.getLayoutParams().width = displayMinDimensions;
+
+        chess = new Chess(this, displayMinDimensions, boardLayout);
+
     }
 
     @Override
@@ -47,36 +55,92 @@ public class ChessBoard extends AppCompatActivity {
 
     }
 
-    void createCells() {
-        TableRow[] rows = new TableRow[8];
-        rows[0] = findViewById(R.id.boardRow1);
-        rows[1] = findViewById(R.id.boardRow2);
-        rows[2] = findViewById(R.id.boardRow3);
-        rows[3] = findViewById(R.id.boardRow4);
-        rows[4] = findViewById(R.id.boardRow5);
-        rows[5] = findViewById(R.id.boardRow6);
-        rows[6] = findViewById(R.id.boardRow7);
-        rows[7] = findViewById(R.id.boardRow8);
-
-        for (int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++)
-                rows[j].addView(createNewCell((i + (j % 2)) % 2 == 0));
-
-        removeSampleCell();
+    void setCell(int x, int y) {
+        if(chess.chessmen[x][y] != null)
+            board[x][y].setImageDrawable(getDrawable(x, y, chess.chessmen[x][y].type, chess.chessmen[x][y].color));
+        else
+            board[x][y].setImageDrawable(getDrawableColorOnly(x, y));
+        board[x][y].setScaleType(ImageButton.ScaleType.FIT_XY);
     }
 
-    View createNewCell(boolean white) {
-        //ImageView cell = new ImageView(new ContextThemeWrapper(this, R.style.Widget_AppCompat_Button_Borderless), null, 0);
-        ImageView cell = new ImageView(this);
-        cell.setLayoutParams(sampleCell.getLayoutParams());
-        if (!white)
-            cell.setBackgroundColor(getResources().getColor(R.color.brown, getTheme()));
-        else
-            cell.setBackgroundColor(getResources().getColor(R.color.white, getTheme()));
+    ImageButton createNewCell(int i, int j, boolean white) {
+        //ImageButton cell = new ImageButton(new ContextThemeWrapper(this, R.style.Widget_AppCompat_Button_Borderless), null, 0);
+        ImageButton cell = new ImageButton(this);
+
+        cell.setImageDrawable(getDrawable(i, j, Chessman.chessmanType.King, Chessman.playerColor.Black));
+        cell.setScaleType(ImageButton.ScaleType.FIT_XY);
+
+        cell.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1));
+        cell.getLayoutParams().width = displayMinDimensions /8;
+        cell.getLayoutParams().height = displayMinDimensions /8;
         return cell;
     }
 
-    void removeSampleCell() {
-        ((ViewManager) sampleCell.getParent()).removeView(sampleCell);
+    LayerDrawable getDrawable(int x, int y, Chessman.chessmanType type, Chessman.playerColor playerColor) {
+        Drawable image=null, color;
+        switch (playerColor)
+        {
+            case Black:
+                switch (type) {
+                    case King:
+                        image = getResources().getDrawable(R.drawable.kingb, getTheme());
+                        break;
+                    case Queen:
+                        image = getResources().getDrawable(R.drawable.queenb, getTheme());
+                        break;
+                    case Rook:
+                        image = getResources().getDrawable(R.drawable.rookb, getTheme());
+                        break;
+                    case Bishop:
+                        image = getResources().getDrawable(R.drawable.bishopb, getTheme());
+                        break;
+                    case Knight:
+                        image = getResources().getDrawable(R.drawable.knightb, getTheme());
+                        break;
+                    case Pawn:
+                        image = getResources().getDrawable(R.drawable.pawnb, getTheme());
+                        break;
+                }
+                break;
+            case White:
+                switch (type) {
+                    case King:
+                        image = getResources().getDrawable(R.drawable.kingw, getTheme());
+                        break;
+                    case Queen:
+                        image = getResources().getDrawable(R.drawable.queenw, getTheme());
+                        break;
+                    case Rook:
+                        image = getResources().getDrawable(R.drawable.rookw, getTheme());
+                        break;
+                    case Bishop:
+                        image = getResources().getDrawable(R.drawable.bishopw, getTheme());
+                        break;
+                    case Knight:
+                        image = getResources().getDrawable(R.drawable.knightw, getTheme());
+                        break;
+                    case Pawn:
+                        image = getResources().getDrawable(R.drawable.pawnw, getTheme());
+                        break;
+                }
+                break;
+        }
+        if ((x + (y % 2)) % 2 == 0)
+            color = new ColorDrawable(getResources().getColor(R.color.white, getTheme()));
+        else
+            color = new ColorDrawable(getResources().getColor(R.color.brown, getTheme()));
+
+        return new LayerDrawable(new Drawable[]{color, image});
     }
+    LayerDrawable getDrawableColorOnly(int x, int y) {
+        Drawable color;
+        if ((x + (y % 2)) % 2 == 0)
+            color = new ColorDrawable(getResources().getColor(R.color.white, getTheme()));
+        else
+            color = new ColorDrawable(getResources().getColor(R.color.brown, getTheme()));
+
+        return new LayerDrawable(new Drawable[]{color});
+    }
+
+
 }

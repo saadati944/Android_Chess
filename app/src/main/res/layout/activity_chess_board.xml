@@ -6,81 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".ChessBoard">
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:id="@+id/boardLayout"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1:1"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:id="@+id/boardRow1"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/brown">
+        <ImageView
             android:layout_width="match_parent"
-
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/sampleCell"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="0dp"
-                android:onClick="btnTmpClick"></ImageView>
-    </TableRow>
-
-        <TableRow
-            android:id="@+id/boardRow2"
-            android:layout_width="match_parent"
-
-            android:layout_height="0dp"
-            android:layout_weight="1"></TableRow>
-
-        <TableRow
-            android:id="@+id/boardRow3"
-            android:layout_width="match_parent"
-
-            android:layout_height="0dp"
-            android:layout_weight="1"></TableRow>
-
-        <TableRow
-            android:id="@+id/boardRow4"
-            android:layout_width="match_parent"
-
-            android:layout_height="0dp"
-            android:layout_weight="1"></TableRow>
-
-        <TableRow
-            android:id="@+id/boardRow5"
-            android:layout_width="match_parent"
-
-            android:layout_height="0dp"
-            android:layout_weight="1"></TableRow>
-
-        <TableRow
-            android:id="@+id/boardRow6"
-            android:layout_width="match_parent"
-
-            android:layout_height="0dp"
-            android:layout_weight="1"></TableRow>
-
-        <TableRow
-            android:id="@+id/boardRow7"
-            android:layout_width="match_parent"
-
-            android:layout_height="0dp"
-            android:layout_weight="1"></TableRow>
-
-        <TableRow
-            android:id="@+id/boardRow8"
-            android:layout_width="match_parent"
-
-            android:layout_height="0dp"
-            android:layout_weight="1"></TableRow>
-    </TableLayout>
+            android:layout_height="match_parent"
+            android:background="@drawable/chessboard"></ImageView>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
