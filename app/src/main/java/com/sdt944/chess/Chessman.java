@@ -1,5 +1,12 @@
 package com.sdt944.chess;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public abstract class Chessman {
@@ -32,6 +39,7 @@ public abstract class Chessman {
     public chessmanType type;
     public playerColor color;
     public boolean isDead = false;
+    public ImageButton button;
 
     public ArrayList<Point> getMoves()
     {
@@ -41,9 +49,21 @@ public abstract class Chessman {
     abstract void generateMoves();
 
     public void setPoint(Point p) { point = p; }
-    public Point getPoint()
-    {
+    public Point getPoint() {
         return point;
+    }
+
+    public void createButton(Drawable icon, int minDimension, Context ctx) {
+        ImageButton btn = new ImageButton(ctx);
+        int width = minDimension/8;
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(width, width);
+
+        lp.setMargins(width*getPoint().x, width*getPoint().y, minDimension - (width*getPoint().x + width), minDimension - (width*getPoint().y + width));
+
+        btn.setLayoutParams(lp);
+        btn.setBackground(icon);
+
+        this.button = btn;
     }
 
     public void addVerticalMovePoints() {

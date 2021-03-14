@@ -1,10 +1,14 @@
 package com.sdt944.chess;
 
+import android.content.Context;
+
 public class Pawn extends Chessman {
     public boolean firstMove = true;
-    public Pawn(playerColor color){
+    public Pawn(Point p, playerColor color, int minDimension, Context ctx) {
+        setPoint(p);
         type = chessmanType.Pawn;
         this.color = color;
+        createButton(color == playerColor.Black ? ctx.getResources().getDrawable(R.drawable.pawnb,ctx.getTheme()):ctx.getResources().getDrawable(R.drawable.pawnw,ctx.getTheme()), minDimension, ctx);
     }
 
     @Override
