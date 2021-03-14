@@ -75,11 +75,16 @@ public class Chess {
         addMenToBoard(boardLayout);
     }
 
+    public Point lastClickedMan = null;
+
     public void onManClick(Chessman man) {
-        Toast.makeText(ctx, "man click at x : "+man.getPoint().x+", y : "+man.getPoint().y, Toast.LENGTH_SHORT).show();
+        lastClickedMan = man.getPoint();
     }
     public void onBoardClick(int x, int y) {
-        Toast.makeText(ctx, "board click at x : "+x+", y : "+y, Toast.LENGTH_SHORT).show();
+        if(lastClickedMan == null)
+            return;
+        move(lastClickedMan, new Point(x, y));
+        lastClickedMan = null;
     }
 
 
@@ -100,9 +105,14 @@ public class Chess {
         move(from.x, from.y, to.x, to.y);
     }
     public void move(int xf, int yf, int xt, int yt) {
-        deadMen.add(chessmen[xt][yt]);
+        if(chessmen[xt][yt] != null)
+            deadMen.add(chessmen[xt][yt]);
+
         chessmen[xt][yt] = chessmen[xf][yf];
         chessmen[xf][yf] = null;
+
+        chessmen[xt][yt].setPoint(new Point(xt, yt));
+        chessmen[xt][yt].moveButton(xt, yt);
     }
 
     private void addMenToBoard(FrameLayout boardLayout)
