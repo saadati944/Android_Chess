@@ -121,6 +121,9 @@ public class Chess {
             kill(new Point(xt, yt));
 
         chessmen[xt][yt] = chessmen[xf][yf];
+        //if moving a pawn make firstMove false
+        if(chessmen[xf][yf].type == Chessman.chessmanType.Pawn)
+            ((Pawn)chessmen[xf][yf]).firstMove = false;
         chessmen[xf][yf] = null;
 
         chessmen[xt][yt].setPoint(new Point(xt, yt));
