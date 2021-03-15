@@ -16,6 +16,20 @@ public class Pawn extends Chessman {
     void generateMoves() {
         moves.clear();
         add1StepForwardMovePoints();
+
+        if(moves.size()==0)
+            return;
+
+        Point frontPoint = moves.get(0);
+
+        Point left = new Point(frontPoint.x-1, frontPoint.y);
+        Point right = new Point(frontPoint.x+1, frontPoint.y);
+
+        if(left.isValid() && parent.chessmen[left.x][left.y] != null && parent.chessmen[left.x][left.y].color != color)
+            moves.add(left);
+        if(right.isValid() && parent.chessmen[right.x][right.y] != null && parent.chessmen[right.x][right.y].color != color)
+            moves.add(right);
+
         if(firstMove) {
             add2StepForwardMovePoints();
             firstMove = false;
