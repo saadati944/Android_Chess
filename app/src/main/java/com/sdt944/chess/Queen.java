@@ -17,7 +17,6 @@ public class Queen extends Chessman {
         moves.clear();
         addVerticalMovePoints();
         addHorizontalMovePoints();
-        addAroundMovePoints();
         addObliqueNEtoSWMovePoints();
         addObliqueNWtoSEMovePoints();
     }
