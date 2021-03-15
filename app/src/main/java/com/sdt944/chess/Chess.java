@@ -10,6 +10,7 @@ public class Chess {
     public ArrayList<Chessman> deadMen = new ArrayList<>();
     public Chessman[/*column - x*/][/*row - y*/] chessmen = new Chessman[8][8];
     public boolean whitePlayerTurn = true;
+    public Point lastManPoint = null;
     public Context ctx;
 
     public Chess(Context ctx, int minDimension, FrameLayout boardLayout) {
@@ -67,24 +68,28 @@ public class Chess {
         chessmen[7][7] = new Rook(new Point(7, 7),Chessman.playerColor.White, minDimension, ctx, this);
 
         for(int i=0;i<8;i++)
-        for(int j=2; j<6; j++)
-        {
-            chessmen[i][j] = null;
-        }
+            for(int j=2; j<6; j++)
+            {
+                chessmen[i][j] = null;
+            }
 
         addMenToBoard(boardLayout);
     }
 
-    public Point lastClickedMan = null;
-
     public void onManClick(Chessman man) {
-        lastClickedMan = man.getPoint();
+        if(lastManPoint == null)
+        {
+            lastManPoint = man.getPoint();
+            chessmen[lastManPoint.x][lastManPoint.y].generateMoves();
+        }
     }
     public void onBoardClick(int x, int y) {
-        if(lastClickedMan == null)
+        if(lastManPoint==null)
             return;
-        move(lastClickedMan, new Point(x, y));
-        lastClickedMan = null;
+        Point clickPoint = new Point(x, y);
+        if(chessmen[lastManPoint.x][lastManPoint.y].moves.contains(clickPoint))
+            move(lastManPoint, clickPoint);
+        lastManPoint = null;
     }
 
 
