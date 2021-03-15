@@ -1,6 +1,7 @@
 package com.sdt944.chess;
 
 import android.content.Context;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class Chess {
     public ArrayList<Chessman> deadMen = new ArrayList<>();
     public Chessman[/*column - x*/][/*row - y*/] chessmen = new Chessman[8][8];
-    public boolean whitePlayerTurn = true;
+    public Chessman.playerColor whichPlayerTurn = Chessman.playerColor.White;
     public Point lastManPoint = null;
     public Context ctx;
 
@@ -77,19 +78,24 @@ public class Chess {
     }
 
     public void onManClick(Chessman man) {
-        if(lastManPoint == null)
+        if(man.color == whichPlayerTurn)
         {
             lastManPoint = man.getPoint();
             chessmen[lastManPoint.x][lastManPoint.y].generateMoves();
+        }
+        else if (lastManPoint != null && chessmen[lastManPoint.x][lastManPoint.y].moves.contains(man.getPoint())) {
+            onBoardClick(man.getPoint().x, man.getPoint().y);
         }
     }
     public void onBoardClick(int x, int y) {
         if(lastManPoint==null)
             return;
         Point clickPoint = new Point(x, y);
-        if(chessmen[lastManPoint.x][lastManPoint.y].moves.contains(clickPoint))
+        if(chessmen[lastManPoint.x][lastManPoint.y].moves.contains(clickPoint)) {
             move(lastManPoint, clickPoint);
-        lastManPoint = null;
+            changeTurn();
+            lastManPoint = null;
+        }
     }
 
 
@@ -111,13 +117,25 @@ public class Chess {
     }
     public void move(int xf, int yf, int xt, int yt) {
         if(chessmen[xt][yt] != null)
-            deadMen.add(chessmen[xt][yt]);
+            kill(new Point(xt, yt));
 
         chessmen[xt][yt] = chessmen[xf][yf];
         chessmen[xf][yf] = null;
 
         chessmen[xt][yt].setPoint(new Point(xt, yt));
         chessmen[xt][yt].moveButton(xt, yt);
+    }
+    public void kill(Point p) {
+        deadMen.add(chessmen[p.x][p.y]);
+        chessmen[p.x][p.y].isDead = true;
+        ((ViewGroup)chessmen[p.x][p.y].button.getParent()).removeView(chessmen[p.x][p.y].button);
+        chessmen[p.x][p.y] = null;
+    }
+    public void changeTurn(){
+        if(whichPlayerTurn == Chessman.playerColor.White)
+            whichPlayerTurn = Chessman.playerColor.Black;
+        else
+            whichPlayerTurn = Chessman.playerColor.White;
     }
 
     private void addMenToBoard(FrameLayout boardLayout)
