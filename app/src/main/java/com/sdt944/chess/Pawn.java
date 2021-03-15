@@ -30,9 +30,21 @@ public class Pawn extends Chessman {
         if(right.isValid() && parent.chessmen[right.x][right.y] != null && parent.chessmen[right.x][right.y].color != color)
             moves.add(right);
 
+        //cant move forward if there is anyone there
+        if(parent.chessmen[frontPoint.x][frontPoint.y] != null) {
+            moves.remove(frontPoint);
+
+            //if there is a man in front of the pawn it can't jump over it
+            //so there is no need to check (and add) second front cell
+            return;
+        }
+
         if(firstMove) {
             add2StepForwardMovePoints();
-            firstMove = false;
+            Point twoFront = moves.get(moves.size()-1);
+            //cant move 2xforward if there is anyone there
+            if(parent.chessmen[twoFront.x][twoFront.y] != null)
+                moves.remove(twoFront);
         }
     }
 }
