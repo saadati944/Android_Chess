@@ -33,7 +33,7 @@ public abstract class Chessman {
 
     private Point point;
 
-    public ArrayList<Point> moves;
+    public ArrayList<Point> moves = new ArrayList<>();
     public chessmanType type;
     public playerColor color;
     public boolean isDead = false;
@@ -134,7 +134,7 @@ public abstract class Chessman {
          * */
         for(int i=this.getPoint().x-1; i<this.getPoint().x+2; i++)
             for(int j=this.getPoint().y-1; j<this.getPoint().y+2; j++)
-                if(Point.isValid(i, j) && point.x != i && point.y != j)
+                if(Point.isValid(i, j) && !(point.x == i && point.y == j))
                     this.moves.add(new Point(i, j));
     }
     public void addObliqueNWtoSEMovePoints() {
@@ -252,7 +252,7 @@ public abstract class Chessman {
         addForwardMovePoints(-2);
     }
     private void addForwardMovePoints(int step) {
-        Point p = new Point(point.x+step, point.y);
+        Point p = new Point(point.x, point.y+step);
         if(p.isValid() && !moves.contains(p))
             moves.add(p);
     }
