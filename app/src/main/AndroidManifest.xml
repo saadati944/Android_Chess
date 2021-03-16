@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Chess">
-        <activity android:name=".ChessBoard"></activity>
+        <activity android:name=".ChessBoard"
+            android:screenOrientation="portrait"/>
         <activity android:name=".PawnPromotion" />
         <activity android:name=".MainActivity">
             <intent-filter>
