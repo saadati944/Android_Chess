@@ -27,7 +27,7 @@ public class PawnPromotion extends AppCompatActivity {
         else if(view.getId() == R.id.btnKnight)
             select(Chessman.chessmanType.Knight);
         else
-            select(Chessman.chessmanType.Pawn);
+            select(Chessman.chessmanType.Queen);
     }
     void select(Chessman.chessmanType newType)
     {
