@@ -13,9 +13,16 @@ public class Chess {
     public Chessman.playerColor whichPlayerTurn = Chessman.playerColor.Black;
     public Point lastManPoint = null;
     public Context ctx;
+    private int minDimension=0;
+    private Chessman manToPromote = null;
+    private FrameLayout boardLayout = null;
+
 
     public Chess(Context ctx, int minDimension, FrameLayout boardLayout) {
         this.ctx = ctx;
+        this.minDimension = minDimension;
+        this.boardLayout = boardLayout;
+
         /*          BOARD
          *    <  X  >
          *    RkbQKBkR    WBWBWBWB
@@ -145,6 +152,36 @@ public class Chess {
             whichPlayerTurn = Chessman.playerColor.White;
             Toast.makeText(ctx, "white's turn", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void promote(Chessman man) {
+        manToPromote = man;
+        ((ChessBoard)ctx).showPromotionActivity();
+    }
+    public void promotionResault(Chessman.chessmanType toType) {
+        Toast.makeText(ctx, toType.toString(), Toast.LENGTH_SHORT).show();
+
+        Chessman newType = null;
+        switch (toType)
+        {
+            case Pawn:
+                return;
+            case Queen:
+                newType = new Queen(manToPromote.getPoint(), manToPromote.color, minDimension, ctx, this);
+                break;
+            case Rook:
+                newType = new Rook(manToPromote.getPoint(), manToPromote.color, minDimension, ctx, this);
+                break;
+            case Bishop:
+                newType = new Bishop(manToPromote.getPoint(), manToPromote.color, minDimension, ctx, this);
+                break;
+            case Knight:
+                newType = new Knight(manToPromote.getPoint(), manToPromote.color, minDimension, ctx, this);
+                break;
+        }
+        ((ViewGroup)manToPromote.button.getParent()).removeView(manToPromote.button);
+        chessmen[manToPromote.getPoint().x][manToPromote.getPoint().y] = newType;
+        boardLayout.addView(newType.button);
     }
 
     private void addMenToBoard(FrameLayout boardLayout) {

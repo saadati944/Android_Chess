@@ -57,11 +57,15 @@ public class ChessBoard extends AppCompatActivity {
         chess.onBoardClick(((int)event.getX())/t, ((int)event.getY())/t);
         return true;
     }
+    public void showPromotionActivity() {
+        startActivityForResult(new Intent(this, PawnPromotion.class), 1);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Toast.makeText(this, PromotionResault.result.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, PromotionResault.result.toString(), Toast.LENGTH_SHORT).show();
+        chess.promotionResault(PromotionResault.result);
 
     }
 }
