@@ -75,6 +75,7 @@ public abstract class Chessman {
         button.animate()
                 .x(width*getPoint().x)
                 .y(width*getPoint().y)
+                //todo : move this 200 to resources
                 .setDuration(200)
                 .start();
     }

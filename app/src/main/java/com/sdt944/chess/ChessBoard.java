@@ -1,36 +1,41 @@
 package com.sdt944.chess;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TableRow;
-import android.widget.Toast;
 
 public class ChessBoard extends AppCompatActivity {
-    public ImageButton[/*column*/][/*row*/] board = new ImageButton[8][8];
+    public ConstraintLayout backgroundLayout;
     public FrameLayout boardLayout;
 
     public Chess chess = null;
     public int displayWidth, displayHeight, displayMinDimensions;
 
+    public int blackColor, whiteColor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chess_board);
+
+        //hiding actionbar
+        this.getSupportActionBar().hide();
+
+        //change background
+        backgroundLayout = findViewById(R.id.backgroundLayout);
+
+        //initiate black and white colors
+        blackColor = getResources().getColor(R.color.white, getTheme());
+        whiteColor = getResources().getColor(R.color.black, getTheme());
+
 
         //set display params
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -66,6 +71,18 @@ public class ChessBoard extends AppCompatActivity {
 
         //Toast.makeText(this, PromotionResault.result.toString(), Toast.LENGTH_SHORT).show();
         chess.promotionResault(PromotionResault.result);
-
     }
+    public void animateTurnChange(Chessman.playerColor turn) {
+        ValueAnimator colorAnimation;
+        if (turn == Chessman.playerColor.White)
+            colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), whiteColor, blackColor);
+        else
+            colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), blackColor, whiteColor);
+
+        //todo : move this 100 to resources
+        colorAnimation.setDuration(100); // milliseconds
+        colorAnimation.addUpdateListener(animator -> backgroundLayout.setBackgroundColor((int) animator.getAnimatedValue()));
+        colorAnimation.start();
+    }
+
 }

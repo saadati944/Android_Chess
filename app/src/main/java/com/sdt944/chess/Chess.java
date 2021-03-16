@@ -3,7 +3,6 @@ package com.sdt944.chess;
 import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -145,13 +144,11 @@ public class Chess {
     }
 
     public void changeTurn() {
-        if (whichPlayerTurn == Chessman.playerColor.White) {
+        if (whichPlayerTurn == Chessman.playerColor.White)
             whichPlayerTurn = Chessman.playerColor.Black;
-            Toast.makeText(ctx, "black's turn", Toast.LENGTH_SHORT).show();
-        } else {
+        else
             whichPlayerTurn = Chessman.playerColor.White;
-            Toast.makeText(ctx, "white's turn", Toast.LENGTH_SHORT).show();
-        }
+        ((ChessBoard)ctx).animateTurnChange(whichPlayerTurn);
     }
 
     public void promote(Chessman man) {
@@ -159,7 +156,6 @@ public class Chess {
         ((ChessBoard)ctx).showPromotionActivity();
     }
     public void promotionResault(Chessman.chessmanType toType) {
-        Toast.makeText(ctx, toType.toString(), Toast.LENGTH_SHORT).show();
 
         Chessman newType = null;
         switch (toType)
