@@ -96,7 +96,7 @@ public abstract class Chessman {
             if(!moves.contains(p))
                 moves.add(p);
 
-            p = new Point(point.x, point.y-1);
+            p = new Point(p.x, p.y-1);
         }
         /*
          *  ........
@@ -114,7 +114,7 @@ public abstract class Chessman {
             if(!moves.contains(p))
                 moves.add(p);
 
-            p = new Point(point.x, point.y+1);
+            p = new Point(p.x, p.y+1);
         }
     }
     public void addHorizontalMovePoints() {
@@ -134,7 +134,7 @@ public abstract class Chessman {
             if(!moves.contains(p))
                 moves.add(p);
 
-            p = new Point(point.x-1, point.y);
+            p = new Point(p.x-1, p.y);
         }
         /*
          *  ........
@@ -152,7 +152,7 @@ public abstract class Chessman {
             if(!moves.contains(p))
                 moves.add(p);
 
-            p = new Point(point.x+1, point.y);
+            p = new Point(p.x+1, p.y);
         }
     }
     public void addAroundMovePoints() {
