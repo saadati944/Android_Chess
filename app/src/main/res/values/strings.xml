@@ -8,4 +8,7 @@
     <string name="knight">Knight</string>
     <string name="pawn">Pawn</string>
     <string name="promotionQuestion">Change pawn with :</string>
+    <string name="saveBoardPrompt">Save game ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

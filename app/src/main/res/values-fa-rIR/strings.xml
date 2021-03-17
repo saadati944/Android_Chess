@@ -9,4 +9,7 @@
     <string name="knight">اسب</string>
     <string name="pawn">سرباز</string>
     <string name="promotionQuestion">تغییر سرباز با :</string>
+    <string name="saveBoardPrompt">ذخیره بازی ؟</string>
+    <string name="yes">بله</string>
+    <string name="no">نه</string>
 </resources>
