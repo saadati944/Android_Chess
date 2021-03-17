@@ -49,7 +49,13 @@ public class ChessBoard extends AppCompatActivity {
         boardLayout.getLayoutParams().height = displayMinDimensions;
         boardLayout.getLayoutParams().width = displayMinDimensions;
 
-        chess = new Chess(this, displayMinDimensions, boardLayout);
+        if (Storage.chess == null) {
+            Storage.chess = chess = new Chess(this, displayMinDimensions, boardLayout);
+        }
+        else {
+            chess = Storage.chess;
+            chess.changeLayout(this, displayMinDimensions, boardLayout);
+        }
 
         findViewById(R.id.boardImage).setOnTouchListener(this::onTouch);
     }
@@ -69,8 +75,8 @@ public class ChessBoard extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //Toast.makeText(this, PromotionResault.result.toString(), Toast.LENGTH_SHORT).show();
-        chess.promotionResault(PromotionResault.result);
+        //Toast.makeText(this, Storage.result.toString(), Toast.LENGTH_SHORT).show();
+        chess.promotionResault(Storage.result);
     }
     public void animateTurnChange(Chessman.playerColor turn) {
         ValueAnimator colorAnimation;
