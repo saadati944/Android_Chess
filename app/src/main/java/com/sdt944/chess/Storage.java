@@ -6,6 +6,6 @@ package com.sdt944.chess;
 * Because this one is easier ...
 * */
 
-public class PromotionResault {
+public class Storage {
     public static Chessman.chessmanType result = Chessman.chessmanType.Pawn;
 }
