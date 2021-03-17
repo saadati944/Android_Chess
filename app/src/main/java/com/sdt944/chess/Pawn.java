@@ -5,12 +5,16 @@ import android.content.Context;
 public class Pawn extends Chessman {
     public boolean firstMove = true;
     public boolean promoted = false;
-    public Pawn(Point p, playerColor color, int minDimension, Context ctx, Chess parent) {
+    public Pawn(Point p, playerColor color, int minDimension, Chess parent) {
         this.parent = parent;
         setPoint(p);
         type = chessmanType.Pawn;
         this.color = color;
-        createButton(color == playerColor.Black ? ctx.getResources().getDrawable(R.drawable.pawnb,ctx.getTheme()):ctx.getResources().getDrawable(R.drawable.pawnw,ctx.getTheme()), minDimension, ctx);
+        this.minDimension = minDimension;
+    }
+
+    public void createButton() {
+        createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.pawnb,parent.ctx.getTheme()):parent.ctx.getResources().getDrawable(R.drawable.pawnw,parent.ctx.getTheme()), minDimension, parent.ctx);
     }
 
     @Override

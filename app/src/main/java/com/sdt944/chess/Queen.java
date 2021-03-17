@@ -4,12 +4,16 @@ import android.content.Context;
 
 public class Queen extends Chessman {
 
-    public Queen(Point p, playerColor color, int minDimension, Context ctx, Chess parent) {
+    public Queen(Point p, playerColor color, int minDimension, Chess parent) {
         this.parent = parent;
         setPoint(p);
         type = chessmanType.Queen;
         this.color = color;
-        createButton(color == playerColor.Black ? ctx.getResources().getDrawable(R.drawable.queenb,ctx.getTheme()):ctx.getResources().getDrawable(R.drawable.queenw,ctx.getTheme()), minDimension, ctx);
+        this.minDimension = minDimension;
+    }
+
+    public void createButton() {
+        createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.queenb,parent.ctx.getTheme()):parent.ctx.getResources().getDrawable(R.drawable.queenw,parent.ctx.getTheme()), minDimension, parent.ctx);
     }
 
     @Override

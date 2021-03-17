@@ -6,12 +6,15 @@ import java.util.ArrayList;
 
 public class King extends Chessman {
 
-    public King(Point p, playerColor color, int minDimension, Context ctx, Chess parent) {
+    public King(Point p, playerColor color, int minDimension, Chess parent) {
         this.parent = parent;
         setPoint(p);
         type = chessmanType.King;
         this.color = color;
-        createButton(color == playerColor.Black ? ctx.getResources().getDrawable(R.drawable.kingb,ctx.getTheme()):ctx.getResources().getDrawable(R.drawable.kingw,ctx.getTheme()), minDimension, ctx);
+        this.minDimension = minDimension;
+    }
+    public void createButton() {
+        createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.kingb,parent.ctx.getTheme()):parent.ctx.getResources().getDrawable(R.drawable.kingw,parent.ctx.getTheme()), minDimension, parent.ctx);
     }
 
     @Override
