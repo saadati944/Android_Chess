@@ -84,6 +84,11 @@ public class Chess {
     public void changeLayout(Context ctx, int minDimension, FrameLayout boardLayout) {
         setLayoutParams(ctx, minDimension, boardLayout);
         addMenToBoard(boardLayout);
+        if(whichPlayerTurn == Chessman.playerColor.White)
+            whichPlayerTurn = Chessman.playerColor.Black;
+        else
+            whichPlayerTurn = Chessman.playerColor.White;
+        changeTurn();
     }
     private void setLayoutParams(Context ctx, int minDimension, FrameLayout boardLayout) {
         this.ctx = ctx;
