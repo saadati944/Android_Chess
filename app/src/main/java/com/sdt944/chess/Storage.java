@@ -8,4 +8,5 @@ package com.sdt944.chess;
 
 public class Storage {
     public static Chessman.chessmanType result = Chessman.chessmanType.Pawn;
+    public static Chess chess = null;
 }
