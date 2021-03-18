@@ -16,6 +16,7 @@ public abstract class Chessman {
         Knight,
         Pawn
     }
+
     /*
      *  .BLACK..
      *  ........
@@ -42,40 +43,44 @@ public abstract class Chessman {
     public int width;
     public int minDimension;
 
-    public ArrayList<Point> getMoves()
-    {
+    public ArrayList<Point> getMoves() {
         return moves;
     }
 
     abstract void generateMoves();
 
-    public void setPoint(Point p) { point = p; }
+    public void setPoint(Point p) {
+        point = p;
+    }
+
     public Point getPoint() {
         return point;
     }
 
-    public abstract void createButton() ;
+    public abstract void createButton();
+
     public void createButton(Drawable icon, int minDimension, Context ctx) {
         ImageButton btn = new ImageButton(ctx);
-        width = minDimension/8;
+        width = minDimension / 8;
         this.minDimension = minDimension;
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(width, width);
 
-        lp.setMargins(width*getPoint().x, width*getPoint().y, minDimension - (width*getPoint().x + width), minDimension - (width*getPoint().y + width));
+        lp.setMargins(width * getPoint().x, width * getPoint().y, minDimension - (width * getPoint().x + width), minDimension - (width * getPoint().y + width));
 
         btn.setLayoutParams(lp);
         btn.setBackground(icon);
 
-        btn.setOnClickListener(v -> {parent.onManClick(this);});
+        btn.setOnClickListener(v -> {
+            parent.onManClick(this);
+        });
 
         this.button = btn;
     }
 
-    public void moveButton(int x, int y)
-    {
+    public void moveButton(int x, int y) {
         button.animate()
-                .x(width*getPoint().x)
-                .y(width*getPoint().y)
+                .x(width * getPoint().x)
+                .y(width * getPoint().y)
                 //todo : move this 200 to resources
                 .setDuration(200)
                 .start();
@@ -92,13 +97,12 @@ public abstract class Chessman {
          *  ........
          *  ........
          * */
-        Point p = new Point(point.x, point.y-1);
-        while(p.isValid() && isPointMovable(p))
-        {
-            if(!moves.contains(p))
+        Point p = new Point(point.x, point.y - 1);
+        while (p.isValid() && isPointMovable(p)) {
+            if (!moves.contains(p))
                 moves.add(p);
 
-            p = new Point(p.x, p.y-1);
+            p = new Point(p.x, p.y - 1);
         }
         /*
          *  ........
@@ -110,15 +114,15 @@ public abstract class Chessman {
          *  ...#....
          *  ...#....
          * */
-        p = new Point(point.x, point.y+1);
-        while(p.isValid() && isPointMovable(p))
-        {
-            if(!moves.contains(p))
+        p = new Point(point.x, point.y + 1);
+        while (p.isValid() && isPointMovable(p)) {
+            if (!moves.contains(p))
                 moves.add(p);
 
-            p = new Point(p.x, p.y+1);
+            p = new Point(p.x, p.y + 1);
         }
     }
+
     public void addHorizontalMovePoints() {
         /*
          *  ........
@@ -130,13 +134,12 @@ public abstract class Chessman {
          *  ........
          *  ........
          * */
-        Point p = new Point(point.x-1, point.y);
-        while(p.isValid() && isPointMovable(p))
-        {
-            if(!moves.contains(p))
+        Point p = new Point(point.x - 1, point.y);
+        while (p.isValid() && isPointMovable(p)) {
+            if (!moves.contains(p))
                 moves.add(p);
 
-            p = new Point(p.x-1, p.y);
+            p = new Point(p.x - 1, p.y);
         }
         /*
          *  ........
@@ -148,15 +151,15 @@ public abstract class Chessman {
          *  ........
          *  ........
          * */
-        p = new Point(point.x+1, point.y);
-        while(p.isValid() && isPointMovable(p))
-        {
-            if(!moves.contains(p))
+        p = new Point(point.x + 1, point.y);
+        while (p.isValid() && isPointMovable(p)) {
+            if (!moves.contains(p))
                 moves.add(p);
 
-            p = new Point(p.x+1, p.y);
+            p = new Point(p.x + 1, p.y);
         }
     }
+
     public void addAroundMovePoints() {
         /*
          *  ........
@@ -168,11 +171,12 @@ public abstract class Chessman {
          *  ........
          *  ........
          * */
-        for(int i=this.getPoint().x-1; i<this.getPoint().x+2; i++)
-            for(int j=this.getPoint().y-1; j<this.getPoint().y+2; j++)
-                if(Point.isValid(i, j) && !(point.x == i && point.y == j) && isPointMovable(i, j))
+        for (int i = this.getPoint().x - 1; i < this.getPoint().x + 2; i++)
+            for (int j = this.getPoint().y - 1; j < this.getPoint().y + 2; j++)
+                if (Point.isValid(i, j) && !(point.x == i && point.y == j) && isPointMovable(i, j))
                     this.moves.add(new Point(i, j));
     }
+
     public void addObliqueNWtoSEMovePoints() {
         /*
          *  #.......
@@ -184,13 +188,11 @@ public abstract class Chessman {
          *  ........
          *  ........
          * */
-        int i = point.x-1, j = point.y-1;
-        while(Point.isValid(i, j) && isPointMovable(i, j))
-        {
+        int i = point.x - 1, j = point.y - 1;
+        while (Point.isValid(i, j) && isPointMovable(i, j)) {
             Point p = new Point(i, j);
 
-            if(!moves.contains(p))
-            {
+            if (!moves.contains(p)) {
                 moves.add(p);
             }
 
@@ -207,14 +209,12 @@ public abstract class Chessman {
          *  ......#.
          *  .......#
          * */
-        i = point.x+1;
-        j = point.y+1;
-        while(Point.isValid(i, j) && isPointMovable(i, j))
-        {
+        i = point.x + 1;
+        j = point.y + 1;
+        while (Point.isValid(i, j) && isPointMovable(i, j)) {
             Point p = new Point(i, j);
 
-            if(!moves.contains(p))
-            {
+            if (!moves.contains(p)) {
                 moves.add(p);
             }
 
@@ -222,6 +222,7 @@ public abstract class Chessman {
             j++;
         }
     }
+
     public void addObliqueNEtoSWMovePoints() {
         /*
          *  ......#.
@@ -233,13 +234,11 @@ public abstract class Chessman {
          *  ........
          *  ........
          * */
-        int i = point.x+1, j = point.y-1;
-        while(Point.isValid(i, j) && isPointMovable(i, j))
-        {
+        int i = point.x + 1, j = point.y - 1;
+        while (Point.isValid(i, j) && isPointMovable(i, j)) {
             Point p = new Point(i, j);
 
-            if(!moves.contains(p))
-            {
+            if (!moves.contains(p)) {
                 moves.add(p);
             }
 
@@ -256,14 +255,12 @@ public abstract class Chessman {
          *  #.......
          *  ........
          * */
-        i = point.x-1;
-        j = point.y+1;
-        while(Point.isValid(i, j) && isPointMovable(i, j))
-        {
+        i = point.x - 1;
+        j = point.y + 1;
+        while (Point.isValid(i, j) && isPointMovable(i, j)) {
             Point p = new Point(i, j);
 
-            if(!moves.contains(p))
-            {
+            if (!moves.contains(p)) {
                 moves.add(p);
             }
 
@@ -271,27 +268,29 @@ public abstract class Chessman {
             j++;
         }
     }
+
     public void add1StepForwardMovePoints() {
-        if(color == playerColor.Black)
-        {
+        if (color == playerColor.Black) {
             addForwardMovePoints(1);
             return;
         }
         addForwardMovePoints(-1);
     }
+
     public void add2StepForwardMovePoints() {
-        if(color == playerColor.Black)
-        {
+        if (color == playerColor.Black) {
             addForwardMovePoints(2);
             return;
         }
         addForwardMovePoints(-2);
     }
+
     private void addForwardMovePoints(int step) {
-        Point p = new Point(point.x, point.y+step);
-        if(p.isValid() && !moves.contains(p))
+        Point p = new Point(point.x, point.y + step);
+        if (p.isValid() && !moves.contains(p))
             moves.add(p);
     }
+
     public void addLMovePoints() {
         /*
          *  ........
@@ -329,9 +328,11 @@ public abstract class Chessman {
         if (p.isValid() && isPointMovable(p) && !moves.contains(p))
             moves.add(p);
     }
+
     private boolean isPointMovable(Point p) {
         return parent.chessmen[p.x][p.y] == null || parent.chessmen[p.x][p.y].color != color;
     }
+
     private boolean isPointMovable(int x, int y) {
         return parent.chessmen[x][y] == null || parent.chessmen[x][y].color != color;
     }
