@@ -16,6 +16,9 @@ public class Chess {
     private Chessman manToPromote = null;
     private FrameLayout boardLayout = null;
 
+    public King whiteKing = null;
+    public King blackKing = null;
+
 
     public Chess(Context ctx, int minDimension, FrameLayout boardLayout) {
         setLayoutParams(ctx, minDimension, boardLayout);
@@ -37,7 +40,7 @@ public class Chess {
         chessmen[1][0] = new Knight(new Point(1, 0), Chessman.playerColor.Black, minDimension, this);
         chessmen[2][0] = new Bishop(new Point(2, 0), Chessman.playerColor.Black, minDimension, this);
         chessmen[3][0] = new Queen(new Point(3, 0), Chessman.playerColor.Black, minDimension, this);
-        chessmen[4][0] = new King(new Point(4, 0), Chessman.playerColor.Black, minDimension, this);
+        chessmen[4][0] = blackKing = new King(new Point(4, 0), Chessman.playerColor.Black, minDimension, this);
         chessmen[5][0] = new Bishop(new Point(5, 0), Chessman.playerColor.Black, minDimension, this);
         chessmen[6][0] = new Knight(new Point(6, 0), Chessman.playerColor.Black, minDimension, this);
         chessmen[7][0] = new Rook(new Point(7, 0), Chessman.playerColor.Black, minDimension, this);
@@ -67,7 +70,7 @@ public class Chess {
         chessmen[1][7] = new Knight(new Point(1, 7), Chessman.playerColor.White, minDimension, this);
         chessmen[2][7] = new Bishop(new Point(2, 7), Chessman.playerColor.White, minDimension, this);
         chessmen[3][7] = new Queen(new Point(3, 7), Chessman.playerColor.White, minDimension, this);
-        chessmen[4][7] = new King(new Point(4, 7), Chessman.playerColor.White, minDimension, this);
+        chessmen[4][7] = whiteKing = new King(new Point(4, 7), Chessman.playerColor.White, minDimension, this);
         chessmen[5][7] = new Bishop(new Point(5, 7), Chessman.playerColor.White, minDimension, this);
         chessmen[6][7] = new Knight(new Point(6, 7), Chessman.playerColor.White, minDimension, this);
         chessmen[7][7] = new Rook(new Point(7, 7), Chessman.playerColor.White, minDimension, this);
