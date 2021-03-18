@@ -188,6 +188,7 @@ public class Chess {
                 newType = new Knight(manToPromote.getPoint(), manToPromote.color, minDimension, this);
                 break;
         }
+        newType.createButton();
         ((ViewGroup)manToPromote.button.getParent()).removeView(manToPromote.button);
         chessmen[manToPromote.getPoint().x][manToPromote.getPoint().y] = newType;
         boardLayout.addView(newType.button);
@@ -198,27 +199,7 @@ public class Chess {
             for (int j = 0; j < 8; j++) {
                 if (chessmen[i][j] == null)
                     continue;
-                //todo : correct this bad code.
-                switch (chessmen[i][j].type) {
-                    case King:
-                        ((King)chessmen[i][j]).createButton();
-                        break;
-                    case Queen:
-                        ((Queen)chessmen[i][j]).createButton();
-                        break;
-                    case Rook:
-                        ((Rook)chessmen[i][j]).createButton();
-                        break;
-                    case Bishop:
-                        ((Bishop)chessmen[i][j]).createButton();
-                        break;
-                    case Knight:
-                        ((Knight)chessmen[i][j]).createButton();
-                        break;
-                    case Pawn:
-                        ((Pawn)chessmen[i][j]).createButton();
-                        break;
-                }
+                chessmen[i][j].createButton();
                 boardLayout.addView(chessmen[i][j].button);
             }
     }

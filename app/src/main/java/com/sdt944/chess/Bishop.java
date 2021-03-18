@@ -11,6 +11,7 @@ public class Bishop extends Chessman {
         this.minDimension = minDimension;
     }
 
+    @Override
     public void createButton() {
         super.createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.bishopb,parent.ctx.getTheme()):parent.ctx.getResources().getDrawable(R.drawable.bishopw,parent.ctx.getTheme()), minDimension, parent.ctx);
     }

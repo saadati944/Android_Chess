@@ -11,6 +11,7 @@ public class Rook extends Chessman {
         this.minDimension = minDimension;
     }
 
+    @Override
     public void createButton() {
         createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.rookb,parent.ctx.getTheme()):parent.ctx.getResources().getDrawable(R.drawable.rookw,parent.ctx.getTheme()), minDimension, parent.ctx);
     }

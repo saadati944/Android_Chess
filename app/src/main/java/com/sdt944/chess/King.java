@@ -13,6 +13,8 @@ public class King extends Chessman {
         this.color = color;
         this.minDimension = minDimension;
     }
+
+    @Override
     public void createButton() {
         createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.kingb,parent.ctx.getTheme()):parent.ctx.getResources().getDrawable(R.drawable.kingw,parent.ctx.getTheme()), minDimension, parent.ctx);
     }

@@ -13,6 +13,7 @@ public class Pawn extends Chessman {
         this.minDimension = minDimension;
     }
 
+    @Override
     public void createButton() {
         createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.pawnb,parent.ctx.getTheme()):parent.ctx.getResources().getDrawable(R.drawable.pawnw,parent.ctx.getTheme()), minDimension, parent.ctx);
     }

@@ -54,6 +54,7 @@ public abstract class Chessman {
         return point;
     }
 
+    public abstract void createButton() ;
     public void createButton(Drawable icon, int minDimension, Context ctx) {
         ImageButton btn = new ImageButton(ctx);
         width = minDimension/8;

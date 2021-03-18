@@ -12,6 +12,7 @@ public class Queen extends Chessman {
         this.minDimension = minDimension;
     }
 
+    @Override
     public void createButton() {
         createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.queenb,parent.ctx.getTheme()):parent.ctx.getResources().getDrawable(R.drawable.queenw,parent.ctx.getTheme()), minDimension, parent.ctx);
     }
