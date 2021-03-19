@@ -16,11 +16,12 @@ public class King extends Chessman {
 
     @Override
     public void createButton() {
-        createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.kingb,parent.ctx.getTheme()):parent.ctx.getResources().getDrawable(R.drawable.kingw,parent.ctx.getTheme()), minDimension, parent.ctx);
+        createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.kingb, parent.ctx.getTheme()) : parent.ctx.getResources().getDrawable(R.drawable.kingw, parent.ctx.getTheme()), minDimension, parent.ctx);
     }
 
     @Override
     void generateMoves() {
+        shouldGenerateMoves = true;
         moves.clear();
         addAroundMovePoints();
     }

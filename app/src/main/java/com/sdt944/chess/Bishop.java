@@ -18,6 +18,7 @@ public class Bishop extends Chessman {
 
     @Override
     void generateMoves() {
+        shouldGenerateMoves = true;
         moves.clear();
         addObliqueNEtoSWMovePoints();
         addObliqueNWtoSEMovePoints();

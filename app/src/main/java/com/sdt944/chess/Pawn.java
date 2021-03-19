@@ -29,6 +29,7 @@ public class Pawn extends Chessman {
 
     @Override
     void generateMoves() {
+        shouldGenerateMoves = true;
         moves.clear();
         add1StepForwardMovePoints();
 
