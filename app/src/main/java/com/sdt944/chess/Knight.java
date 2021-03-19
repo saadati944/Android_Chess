@@ -17,7 +17,7 @@ public class Knight extends Chessman {
     }
     @Override
     void generateMoves() {
-        shouldGenerateMoves = true;
+        shouldGenerateMoves = false;
         moves.clear();
         addLMovePoints();
     }

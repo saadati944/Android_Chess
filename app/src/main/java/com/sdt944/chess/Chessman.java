@@ -83,7 +83,7 @@ public abstract class Chessman {
     }
 
     public void moveButton(int x, int y) {
-        shouldGenerateMoves = false;
+        shouldGenerateMoves = true;
         button.animate()
                 .x(width * getPoint().x)
                 .y(width * getPoint().y)
