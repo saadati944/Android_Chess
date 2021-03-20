@@ -3,6 +3,7 @@ package com.sdt944.chess;
 import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -16,8 +17,11 @@ public class Chess {
     private Chessman manToPromote = null;
     private FrameLayout boardLayout = null;
 
+    private boolean gameEnd = false;
+
     public King whiteKing = null;
     public King blackKing = null;
+
 
 
     public Chess(Context ctx, int minDimension, FrameLayout boardLayout) {
@@ -100,8 +104,11 @@ public class Chess {
     }
 
     public void onManClick(Chessman man) {
+        if(gameEnd)
+            return;
         if (man.color == whichPlayerTurn) {
             lastManPoint = man.getPoint();
+
             chessmen[lastManPoint.x][lastManPoint.y].generateMoves();
         } else if (lastManPoint != null && chessmen[lastManPoint.x][lastManPoint.y].moves.contains(man.getPoint())) {
             onBoardClick(man.getPoint().x, man.getPoint().y);
@@ -109,6 +116,8 @@ public class Chess {
     }
 
     public void onBoardClick(int x, int y) {
+        if(gameEnd)
+            return;
         if (lastManPoint == null)
             return;
         Point clickPoint = new Point(x, y);
@@ -143,7 +152,8 @@ public class Chess {
             kill(new Point(xt, yt));
 
         chessmen[xt][yt] = chessmen[xf][yf];
-        //if moving a pawn make firstMove false
+
+        //todo : move this part to pawn class (in setpoint function)
         if(chessmen[xf][yf].type == Chessman.chessmanType.Pawn)
             ((Pawn)chessmen[xf][yf]).firstMove = false;
         chessmen[xf][yf] = null;
