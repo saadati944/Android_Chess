@@ -43,8 +43,6 @@ public abstract class Chessman {
     public int width;
     public int minDimension;
 
-    //make shouldGenerateMoves false in generateMoves function in each extended class
-    public boolean shouldGenerateMoves = true;
 
 
     public ArrayList<Point> getMoves() {
@@ -55,7 +53,6 @@ public abstract class Chessman {
 
     public void setPoint(Point p) {
         point = p;
-        shouldGenerateMoves = true;
     }
 
     public Point getPoint() {
@@ -83,7 +80,6 @@ public abstract class Chessman {
     }
 
     public void moveButton(int x, int y) {
-        shouldGenerateMoves = true;
         button.animate()
                 .x(width * getPoint().x)
                 .y(width * getPoint().y)

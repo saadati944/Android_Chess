@@ -18,7 +18,6 @@ public class Rook extends Chessman {
 
     @Override
     void generateMoves() {
-        shouldGenerateMoves = false;
         moves.clear();
         addVerticalMovePoints();
         addHorizontalMovePoints();

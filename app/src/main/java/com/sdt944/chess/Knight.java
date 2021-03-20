@@ -1,6 +1,5 @@
 package com.sdt944.chess;
 
-import android.content.Context;
 
 public class Knight extends Chessman {
     public Knight(Point p, playerColor color, int minDimension, Chess parent) {
@@ -17,7 +16,6 @@ public class Knight extends Chessman {
     }
     @Override
     void generateMoves() {
-        shouldGenerateMoves = false;
         moves.clear();
         addLMovePoints();
     }

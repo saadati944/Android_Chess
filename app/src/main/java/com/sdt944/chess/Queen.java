@@ -19,7 +19,6 @@ public class Queen extends Chessman {
 
     @Override
     void generateMoves() {
-        shouldGenerateMoves = false;
         moves.clear();
         addVerticalMovePoints();
         addHorizontalMovePoints();

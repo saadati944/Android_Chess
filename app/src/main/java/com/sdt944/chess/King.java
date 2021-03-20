@@ -22,7 +22,6 @@ public class King extends Chessman {
 
     @Override
     void generateMoves() {
-        shouldGenerateMoves = false;
         moves.clear();
         addAroundMovePoints();
     }
