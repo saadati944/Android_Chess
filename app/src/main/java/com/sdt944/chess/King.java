@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 public class King extends Chessman {
 
+    public enum kingRiskType {
+        Check,
+        CheckMate,
+        Safe
+    }
 
     public King(Point p, playerColor color, int minDimension, Chess parent) {
         this.parent = parent;
