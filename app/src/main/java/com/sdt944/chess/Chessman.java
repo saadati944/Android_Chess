@@ -388,11 +388,19 @@ public abstract class Chessman {
          *  ........
          * */
         Point p = new Point(point.x, point.y - 1);
-        while (p.isValid() && isPointMovable(p)) {
-            if (!moves.contains(p))
-                moves.add(p);
-
-            p = new Point(p.x, p.y - 1);
+        while (p.isValid()) {
+            if (parent.chessmen[p.x][p.y]==null) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                p = new Point(p.x, p.y - 1);
+                continue;
+            }
+            if (parent.chessmen[p.x][p.y].color != color) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                break;
+            }
+            break;
         }
         /*
          *  ........
@@ -405,11 +413,19 @@ public abstract class Chessman {
          *  ...#....
          * */
         p = new Point(point.x, point.y + 1);
-        while (p.isValid() && isPointMovable(p)) {
-            if (!moves.contains(p))
-                moves.add(p);
-
-            p = new Point(p.x, p.y + 1);
+        while (p.isValid()) {
+            if (parent.chessmen[p.x][p.y]==null) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                p = new Point(p.x, p.y + 1);
+                continue;
+            }
+            if (parent.chessmen[p.x][p.y].color != color) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                break;
+            }
+            break;
         }
     }
 
@@ -425,11 +441,19 @@ public abstract class Chessman {
          *  ........
          * */
         Point p = new Point(point.x - 1, point.y);
-        while (p.isValid() && isPointMovable(p)) {
-            if (!moves.contains(p))
-                moves.add(p);
-
-            p = new Point(p.x - 1, p.y);
+        while (p.isValid()) {
+            if (parent.chessmen[p.x][p.y]==null) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                p = new Point(p.x - 1, p.y );
+                continue;
+            }
+            if (parent.chessmen[p.x][p.y].color != color) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                break;
+            }
+            break;
         }
         /*
          *  ........
@@ -442,11 +466,19 @@ public abstract class Chessman {
          *  ........
          * */
         p = new Point(point.x + 1, point.y);
-        while (p.isValid() && isPointMovable(p)) {
-            if (!moves.contains(p))
-                moves.add(p);
-
-            p = new Point(p.x + 1, p.y);
+        while (p.isValid()) {
+            if (parent.chessmen[p.x][p.y]==null) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                p = new Point(p.x + 1, p.y);
+                continue;
+            }
+            if (parent.chessmen[p.x][p.y].color != color) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                break;
+            }
+            break;
         }
     }
 
@@ -479,15 +511,21 @@ public abstract class Chessman {
          *  ........
          * */
         int i = point.x - 1, j = point.y - 1;
-        while (Point.isValid(i, j) && isPointMovable(i, j)) {
+        while (Point.isValid(i, j)) {
             Point p = new Point(i, j);
-
-            if (!moves.contains(p)) {
-                moves.add(p);
-            }
-
             i--;
             j--;
+            if (parent.chessmen[p.x][p.y]==null) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                continue;
+            }
+            if (parent.chessmen[p.x][p.y].color != color) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                break;
+            }
+            break;
         }
         /*
          *  ........
@@ -501,15 +539,21 @@ public abstract class Chessman {
          * */
         i = point.x + 1;
         j = point.y + 1;
-        while (Point.isValid(i, j) && isPointMovable(i, j)) {
+        while (Point.isValid(i, j)) {
             Point p = new Point(i, j);
-
-            if (!moves.contains(p)) {
-                moves.add(p);
-            }
-
             i++;
             j++;
+            if (parent.chessmen[p.x][p.y]==null) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                continue;
+            }
+            if (parent.chessmen[p.x][p.y].color != color) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                break;
+            }
+            break;
         }
     }
 
@@ -525,15 +569,21 @@ public abstract class Chessman {
          *  ........
          * */
         int i = point.x + 1, j = point.y - 1;
-        while (Point.isValid(i, j) && isPointMovable(i, j)) {
+        while (Point.isValid(i, j)) {
             Point p = new Point(i, j);
-
-            if (!moves.contains(p)) {
-                moves.add(p);
-            }
-
             i++;
             j--;
+            if (parent.chessmen[p.x][p.y]==null) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                continue;
+            }
+            if (parent.chessmen[p.x][p.y].color != color) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                break;
+            }
+            break;
         }
         /*
          *  ........
@@ -547,15 +597,21 @@ public abstract class Chessman {
          * */
         i = point.x - 1;
         j = point.y + 1;
-        while (Point.isValid(i, j) && isPointMovable(i, j)) {
+        while (Point.isValid(i, j)) {
             Point p = new Point(i, j);
-
-            if (!moves.contains(p)) {
-                moves.add(p);
-            }
-
             i--;
             j++;
+            if (parent.chessmen[p.x][p.y]==null) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                continue;
+            }
+            if (parent.chessmen[p.x][p.y].color != color) {
+                if (!moves.contains(p))
+                    moves.add(p);
+                break;
+            }
+            break;
         }
     }
 
