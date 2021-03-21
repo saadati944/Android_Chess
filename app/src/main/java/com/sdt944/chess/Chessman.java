@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -110,8 +111,10 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if (isThereDirectMover(x, y))
+                if(isThereDirectMover(x, y))
                     return false;
+                else
+                    break;
             }
             y--;
         }
@@ -131,8 +134,10 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if (isThereDirectMover(x, y))
+                if(isThereDirectMover(x, y))
                     return false;
+                else
+                    break;
             }
             y++;
         }
@@ -153,8 +158,10 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if (isThereDirectMover(x, y))
+                if(isThereDirectMover(x, y))
                     return false;
+                else
+                    break;
             }
             x--;
         }
@@ -175,8 +182,10 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if (isThereDirectMover(x, y))
+                if(isThereDirectMover(x, y))
                     return false;
+                else
+                    break;
             }
             x++;
         }
@@ -199,8 +208,10 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if (isThereObliqueMover(x, y))
+                if(isThereObliqueMover(x, y))
                     return false;
+                else
+                    break;
             }
             x--;
             y--;
@@ -222,8 +233,10 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if (isThereObliqueMover(x, y))
+                if(isThereObliqueMover(x, y))
                     return false;
+                else
+                    break;
             }
             x++;
             y++;
@@ -245,8 +258,10 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if (isThereObliqueMover(x, y))
+                if(isThereObliqueMover(x, y))
                     return false;
+                else
+                    break;
             }
             x--;
             y++;
@@ -268,8 +283,10 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if (isThereObliqueMover(x, y))
+                if(isThereObliqueMover(x, y))
                     return false;
+                else
+                    break;
             }
             x++;
             y--;
