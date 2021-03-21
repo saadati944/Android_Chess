@@ -160,6 +160,44 @@ public class Chess {
 
         chessmen[xt][yt].setPoint(new Point(xt, yt));
         chessmen[xt][yt].moveButton(xt, yt);
+        validateKings();
+    }
+
+    public void validateKings() {
+        King.kingRiskType whiteState = validateKing(whiteKing);
+        if(whiteState == King.kingRiskType.CheckMate) {
+            //gameEnd = true;
+            Toast.makeText(ctx, "white checkmate", Toast.LENGTH_SHORT).show();
+        }
+        else if(whiteState == King.kingRiskType.Check)
+            Toast.makeText(ctx, "white check", Toast.LENGTH_SHORT).show();
+
+        King.kingRiskType blackState = validateKing(blackKing);
+        if(blackState == King.kingRiskType.CheckMate) {
+            //gameEnd = true;
+            Toast.makeText(ctx, "black checkmate", Toast.LENGTH_SHORT).show();
+        }
+        else if(blackState == King.kingRiskType.Check)
+            Toast.makeText(ctx, "black check", Toast.LENGTH_SHORT).show();
+    }
+    private King.kingRiskType validateKing(King k) {
+        k.generateMoves();
+
+        boolean check = !k.isPointSafe();
+        boolean mate = true;
+
+        for(Point p:k.moves) {
+            if(k.isPointSafe(p)) {
+                mate = false;
+                break;
+            }
+        }
+
+        if(check && mate)
+            return King.kingRiskType.CheckMate;
+        if(check)
+            return King.kingRiskType.Check;
+        return King.kingRiskType.Safe;
     }
 
     public void kill(Point p) {
