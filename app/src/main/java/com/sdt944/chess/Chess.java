@@ -153,6 +153,10 @@ public class Chess {
     public void doMove(Point from, Point to) {
         if (move(from.x, from.y, to.x, to.y)){
             resetValidMoveButtons();
+            if (chessmen[to.x][to.y].type == Chessman.chessmanType.Pawn &&
+                    (chessmen[to.x][to.y].color == Chessman.playerColor.White && chessmen[to.x][to.y].getPoint().y == 0 //white reaches end
+                    || chessmen[to.x][to.y].color == Chessman.playerColor.Black && chessmen[to.x][to.y].getPoint().y == 7)) //black reaches end
+                promote(chessmen[to.x][to.y]);
             changeTurn();
             lastManPoint = null;
         }

@@ -22,9 +22,6 @@ public class Pawn extends Chessman {
     public void setPoint(Point p)
     {
         super.setPoint(p);
-        if (color == playerColor.White && p.y == 0 //white reaches end
-            || color == playerColor.Black && p.y == 7) //black reaches end
-            parent.promote(this);
     }
 
     @Override
