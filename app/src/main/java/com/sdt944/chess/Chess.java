@@ -1,8 +1,12 @@
 package com.sdt944.chess;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,6 +21,9 @@ public class Chess {
     private Chessman manToPromote = null;
     private FrameLayout boardLayout = null;
 
+    public ArrayList<View> validMoveButtons = new ArrayList<>();
+
+    //todo : try to remove this property if not needed
     private boolean gameEnd = false;
 
     public King whiteKing = null;
@@ -109,7 +116,9 @@ public class Chess {
         if (man.color == whichPlayerTurn) {
             lastManPoint = man.getPoint();
 
+            resetValidMoveButtons();
             chessmen[lastManPoint.x][lastManPoint.y].generateMoves();
+            addValidMoveButtons(chessmen[lastManPoint.x][lastManPoint.y].moves);
         } else if (lastManPoint != null && chessmen[lastManPoint.x][lastManPoint.y].moves.contains(man.getPoint())) {
             onBoardClick(man.getPoint().x, man.getPoint().y);
         }
@@ -143,6 +152,7 @@ public class Chess {
 
     public void doMove(Point from, Point to) {
         if (move(from.x, from.y, to.x, to.y)){
+            resetValidMoveButtons();
             changeTurn();
             lastManPoint = null;
         }
@@ -249,5 +259,37 @@ public class Chess {
                 chessmen[i][j].createButton();
                 boardLayout.addView(chessmen[i][j].button);
             }
+    }
+
+
+    public void createValidMoveButton(Point p) {
+        ImageButton btn = new ImageButton(ctx);
+        int width = minDimension / 8;
+        this.minDimension = minDimension;
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(width, width);
+
+        lp.setMargins(width * p.x, width * p.y, minDimension - (width * p.x + width), minDimension - (width * p.y + width));
+
+        btn.setLayoutParams(lp);
+        btn.setBackground(ctx.getResources().getDrawable(R.drawable.point,ctx.getTheme()));
+
+        btn.setOnClickListener(v -> {
+            onBoardClick(p.x, p.y);
+        });
+
+        validMoveButtons.add(btn);
+        boardLayout.addView(btn);
+    }
+
+    public void addValidMoveButtons(ArrayList<Point> validMoves) {
+        for (Point p:validMoves) {
+            createValidMoveButton(p);
+        }
+    }
+    public void resetValidMoveButtons() {
+        for (View v:validMoveButtons)
+            ((ViewGroup)v.getParent()).removeView(v);
+
+        validMoveButtons.clear();
     }
 }
