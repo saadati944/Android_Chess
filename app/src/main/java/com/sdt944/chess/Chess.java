@@ -122,9 +122,7 @@ public class Chess {
             return;
         Point clickPoint = new Point(x, y);
         if (chessmen[lastManPoint.x][lastManPoint.y].moves.contains(clickPoint)) {
-            move(lastManPoint, clickPoint);
-            changeTurn();
-            lastManPoint = null;
+            doMove(lastManPoint, clickPoint);
         }
     }
 
@@ -143,43 +141,42 @@ public class Chess {
         return true;
     }
 
-    public void move(Point from, Point to) {
-        move(from.x, from.y, to.x, to.y);
+    public void doMove(Point from, Point to) {
+        if (move(from.x, from.y, to.x, to.y)){
+            changeTurn();
+            lastManPoint = null;
+        }
     }
 
-    public void move(int xf, int yf, int xt, int yt) {
-        if (chessmen[xt][yt] != null)
-            kill(new Point(xt, yt));
-
+    public boolean move(int xf, int yf, int xt, int yt) {
+        Chessman tempMan = chessmen[xt][yt];
         chessmen[xt][yt] = chessmen[xf][yf];
-
-        //todo : move this part to pawn class (in setpoint function)
-        if(chessmen[xf][yf].type == Chessman.chessmanType.Pawn)
-            ((Pawn)chessmen[xf][yf]).firstMove = false;
+        chessmen[xt][yt].setPoint(new Point(xt, yt));
         chessmen[xf][yf] = null;
 
-        chessmen[xt][yt].setPoint(new Point(xt, yt));
-        chessmen[xt][yt].moveButton(xt, yt);
-        validateKings();
+        King.kingRiskType relatedKingStatus;
+        if(chessmen[xt][yt].color == Chessman.playerColor.White)
+            relatedKingStatus = validateKing(whiteKing);
+        else
+            relatedKingStatus = validateKing(blackKing);
+
+        if(relatedKingStatus == King.kingRiskType.Safe) {
+            if(tempMan != null)
+                kill(tempMan);
+            chessmen[xt][yt].setPoint(new Point(xt, yt));
+            chessmen[xt][yt].moveButton(xt, yt);
+            if(chessmen[xt][yt].type == Chessman.chessmanType.Pawn)
+                ((Pawn)chessmen[xt][yt]).firstMove = false;
+            return true;
+        }
+
+        chessmen[xt][yt].setPoint(new Point(xf, yf));
+        chessmen[xf][yf] = chessmen[xt][yt];
+        chessmen[xt][yt] = tempMan;
+        Toast.makeText(ctx, "Illegal movement !", Toast.LENGTH_SHORT).show();
+        return false;
     }
 
-    public void validateKings() {
-        King.kingRiskType whiteState = validateKing(whiteKing);
-        if(whiteState == King.kingRiskType.CheckMate) {
-            //gameEnd = true;
-            Toast.makeText(ctx, "white checkmate", Toast.LENGTH_SHORT).show();
-        }
-        else if(whiteState == King.kingRiskType.Check)
-            Toast.makeText(ctx, "white check", Toast.LENGTH_SHORT).show();
-
-        King.kingRiskType blackState = validateKing(blackKing);
-        if(blackState == King.kingRiskType.CheckMate) {
-            //gameEnd = true;
-            Toast.makeText(ctx, "black checkmate", Toast.LENGTH_SHORT).show();
-        }
-        else if(blackState == King.kingRiskType.Check)
-            Toast.makeText(ctx, "black check", Toast.LENGTH_SHORT).show();
-    }
     private King.kingRiskType validateKing(King k) {
         k.generateMoves();
 
@@ -200,11 +197,10 @@ public class Chess {
         return King.kingRiskType.Safe;
     }
 
-    public void kill(Point p) {
-        deadMen.add(chessmen[p.x][p.y]);
-        chessmen[p.x][p.y].isDead = true;
-        ((ViewGroup) chessmen[p.x][p.y].button.getParent()).removeView(chessmen[p.x][p.y].button);
-        chessmen[p.x][p.y] = null;
+    public void kill(Chessman m) {
+        deadMen.add(m);
+        m.isDead = true;
+        ((ViewGroup) m.button.getParent()).removeView(m.button);
     }
 
     public void changeTurn() {
