@@ -2,6 +2,7 @@ package com.sdt944.chess;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -81,11 +82,17 @@ public abstract class Chessman {
     }
 
     public void moveButton(int x, int y) {
+
+        if(color == playerColor.White)
+            MediaPlayer.create(parent.ctx, R.raw.chess1).start();
+        else
+            MediaPlayer.create(parent.ctx, R.raw.chess2).start();
+
         button.animate()
                 .x(width * getPoint().x)
                 .y(width * getPoint().y)
-                //todo : move this 200 to resources
-                .setDuration(200)
+                //todo : move this 300 to resources
+                .setDuration(300)
                 .start();
     }
 
