@@ -1,5 +1,7 @@
 # Android Chess game
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/df7197f6c6024a43b6077bcec95341a4)](https://app.codacy.com/gh/saadati944/Android_Chess?utm_source=github.com&utm_medium=referral&utm_content=saadati944/Android_Chess&utm_campaign=Badge_Grade_Settings)
+
 Chess game in android
 written with java
 
