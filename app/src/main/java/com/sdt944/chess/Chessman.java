@@ -33,6 +33,12 @@ public abstract class Chessman {
         White
     }
 
+    private enum PathConditions {
+        Increase,
+        Decrease,
+        Hold
+    }
+
     private Point point;
 
     public ArrayList<Point> moves = new ArrayList<>();
@@ -99,210 +105,31 @@ public abstract class Chessman {
     }
 
     public boolean isPointSafe(Point point) {
-        //todo : move the same codes to a function and don't write a code more than one time
-
         //                vertical/horizontal checks
-        /*
-         *  ........
-         *  ...?....
-         *  ...#....
-         *  ...X....
-         *  ........
-         *  ........
-         *  ........
-         *  ........
-         * */
-        int x = point.x;
-        int y = point.y - 1;
-        while (Point.isValid(x, y)) {
-            if (parent.chessmen[x][y] != null) {
-                if (parent.chessmen[x][y].color == color)
-                    break;
-                if (isThereDirectMover(x, y))
-                    return false;
-                else
-                    break;
-            }
-            y--;
-        }
-        /*
-         *  ........
-         *  ........
-         *  ........
-         *  ...X....
-         *  ...#....
-         *  ...#....
-         *  ...?....
-         *  ........
-         * */
-        x = point.x;
-        y = point.y + 1;
-        while (Point.isValid(x, y)) {
-            if (parent.chessmen[x][y] != null) {
-                if (parent.chessmen[x][y].color == color)
-                    break;
-                if (isThereDirectMover(x, y))
-                    return false;
-                else
-                    break;
-            }
-            y++;
-        }
-
-        /*
-         *  ........
-         *  ........
-         *  ........
-         *  .?#X....
-         *  ........
-         *  ........
-         *  ........
-         *  ........
-         * */
-        x = point.x - 1;
-        y = point.y;
-        while (Point.isValid(x, y)) {
-            if (parent.chessmen[x][y] != null) {
-                if (parent.chessmen[x][y].color == color)
-                    break;
-                if (isThereDirectMover(x, y))
-                    return false;
-                else
-                    break;
-            }
-            x--;
-        }
-
-        /*
-         *  ........
-         *  ........
-         *  ........
-         *  ...X##?.
-         *  ........
-         *  ........
-         *  ........
-         *  ........
-         * */
-        x = point.x + 1;
-        y = point.y;
-        while (Point.isValid(x, y)) {
-            if (parent.chessmen[x][y] != null) {
-                if (parent.chessmen[x][y].color == color)
-                    break;
-                if (isThereDirectMover(x, y))
-                    return false;
-                else
-                    break;
-            }
-            x++;
-        }
+        if(!isPathSafe(point, PathConditions.Hold, PathConditions.Decrease))
+             return false;
+        if(!isPathSafe(point, PathConditions.Hold, PathConditions.Increase))
+            return false;
+        if(!isPathSafe(point, PathConditions.Decrease, PathConditions.Hold))
+            return false;
+        if(!isPathSafe(point, PathConditions.Increase, PathConditions.Hold))
+            return false;
 
         //                oblique checks
 
-        /*
-         *  ........
-         *  .?......
-         *  ..#.....
-         *  ...X....
-         *  ........
-         *  ........
-         *  ........
-         *  ........
-         * */
-        x = point.x - 1;
-        y = point.y - 1;
-        while (Point.isValid(x, y)) {
-            if (parent.chessmen[x][y] != null) {
-                if (parent.chessmen[x][y].color == color)
-                    break;
-                if (isThereObliqueMover(x, y))
-                    return false;
-                else
-                    break;
-            }
-            x--;
-            y--;
-        }
-
-        /*
-         *  ........
-         *  ........
-         *  ........
-         *  ...X....
-         *  ....#...
-         *  .....#..
-         *  ......?.
-         *  ........
-         * */
-        x = point.x + 1;
-        y = point.y + 1;
-        while (Point.isValid(x, y)) {
-            if (parent.chessmen[x][y] != null) {
-                if (parent.chessmen[x][y].color == color)
-                    break;
-                if (isThereObliqueMover(x, y))
-                    return false;
-                else
-                    break;
-            }
-            x++;
-            y++;
-        }
-
-        /*
-         *  ........
-         *  ........
-         *  ........
-         *  ...X....
-         *  ..#.....
-         *  .?......
-         *  ........
-         *  ........
-         * */
-        x = point.x - 1;
-        y = point.y + 1;
-        while (Point.isValid(x, y)) {
-            if (parent.chessmen[x][y] != null) {
-                if (parent.chessmen[x][y].color == color)
-                    break;
-                if (isThereObliqueMover(x, y))
-                    return false;
-                else
-                    break;
-            }
-            x--;
-            y++;
-        }
-
-        /*
-         *  ........
-         *  .....?..
-         *  ....#...
-         *  ...X....
-         *  ........
-         *  ........
-         *  ........
-         *  ........
-         * */
-        x = point.x + 1;
-        y = point.y - 1;
-        while (Point.isValid(x, y)) {
-            if (parent.chessmen[x][y] != null) {
-                if (parent.chessmen[x][y].color == color)
-                    break;
-                if (isThereObliqueMover(x, y))
-                    return false;
-                else
-                    break;
-            }
-            x++;
-            y--;
-        }
+        if(!isPathSafe(point, PathConditions.Decrease, PathConditions.Decrease))
+            return false;
+        if(!isPathSafe(point, PathConditions.Increase, PathConditions.Increase))
+            return false;
+        if(!isPathSafe(point, PathConditions.Decrease, PathConditions.Increase))
+            return false;
+        if(!isPathSafe(point, PathConditions.Increase, PathConditions.Decrease))
+            return false;
 
 
         //                knight checks
-        x = point.x - 1;
-        y = point.y - 2;
+        int x = point.x - 1;
+        int y = point.y - 2;
         if (Point.isValid(x, y) && parent.chessmen[x][y] != null
                 && parent.chessmen[x][y].color != color
                 && parent.chessmen[x][y].type == ChessmanType.Knight)
@@ -373,6 +200,31 @@ public abstract class Chessman {
                     return false;
 
         return true;
+    }
+
+    private boolean isPathSafe(Point p, PathConditions xCondition, PathConditions yCondition) {
+        int x = doCondition(p.x, xCondition);
+        int y = doCondition(p.y, yCondition);
+        while (Point.isValid(x, y)) {
+            if (parent.chessmen[x][y] != null) {
+                if (parent.chessmen[x][y].color == color)
+                    break;
+                if ((xCondition != PathConditions.Hold && yCondition != PathConditions.Hold) && isThereObliqueMover(x, y) || isThereDirectMover(x, y))
+                    return false;
+                else
+                    break;
+            }
+            x = doCondition(x, xCondition);
+            y = doCondition(y, yCondition);
+        }
+        return true;
+    }
+    private int doCondition(int v, PathConditions c) {
+        if(c == PathConditions.Increase)
+            return ++v;
+        if(c == PathConditions.Decrease)
+            return --v;
+        return v;
     }
 
     private boolean isThereDirectMover(int x, int y) {
