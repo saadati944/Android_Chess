@@ -221,9 +221,9 @@ public abstract class Chessman {
     }
     private int doCondition(int v, PathConditions c) {
         if(c == PathConditions.Increase)
-            return ++v;
+            return v + 1;
         if(c == PathConditions.Decrease)
-            return --v;
+            return v - 1;
         return v;
     }
 
@@ -509,31 +509,19 @@ public abstract class Chessman {
          *  ........
          *  ........
          * */
-        Point p = new Point(point.x - 1, point.y - 2);
-        if (p.isValid() && isPointMovable(p) && !moves.contains(p))
-            moves.add(p);
-        p = new Point(point.x - 1, point.y + 2);
-        if (p.isValid() && isPointMovable(p) && !moves.contains(p))
-            moves.add(p);
-        p = new Point(point.x - 2, point.y - 1);
-        if (p.isValid() && isPointMovable(p) && !moves.contains(p))
-            moves.add(p);
-        p = new Point(point.x - 2, point.y + 1);
-        if (p.isValid() && isPointMovable(p) && !moves.contains(p))
-            moves.add(p);
+        Point[] lpoints = new Point[8];
+        lpoints[0] = new Point(point.x - 1, point.y - 2);
+        lpoints[1] = new Point(point.x - 1, point.y + 2);
+        lpoints[2] = new Point(point.x - 2, point.y - 1);
+        lpoints[3] = new Point(point.x - 2, point.y + 1);
+        lpoints[4] = new Point(point.x + 1, point.y - 2);
+        lpoints[5] = new Point(point.x + 1, point.y + 2);
+        lpoints[6] = new Point(point.x + 2, point.y - 1);
+        lpoints[7] = new Point(point.x + 2, point.y + 1);
 
-        p = new Point(point.x + 1, point.y - 2);
-        if (p.isValid() && isPointMovable(p) && !moves.contains(p))
-            moves.add(p);
-        p = new Point(point.x + 1, point.y + 2);
-        if (p.isValid() && isPointMovable(p) && !moves.contains(p))
-            moves.add(p);
-        p = new Point(point.x + 2, point.y - 1);
-        if (p.isValid() && isPointMovable(p) && !moves.contains(p))
-            moves.add(p);
-        p = new Point(point.x + 2, point.y + 1);
-        if (p.isValid() && isPointMovable(p) && !moves.contains(p))
-            moves.add(p);
+        for(Point p:lpoints)
+            if (p.isValid() && isPointMovable(p) && !moves.contains(p))
+                moves.add(p);
     }
 
     private boolean isPointMovable(Point p) {
