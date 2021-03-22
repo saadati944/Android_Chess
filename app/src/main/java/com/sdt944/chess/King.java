@@ -1,8 +1,5 @@
 package com.sdt944.chess;
 
-import android.content.Context;
-
-import java.util.ArrayList;
 
 public class King extends Chessman {
 

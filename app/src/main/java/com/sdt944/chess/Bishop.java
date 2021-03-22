@@ -1,6 +1,5 @@
 package com.sdt944.chess;
 
-import android.content.Context;
 
 public class Bishop extends Chessman {
     public Bishop (Point p, playerColor color, int minDimension, Chess parent) {

@@ -1,6 +1,5 @@
 package com.sdt944.chess;
 
-import android.content.Context;
 
 public class Rook extends Chessman {
     public Rook(Point p, playerColor color, int minDimension, Chess parent) {

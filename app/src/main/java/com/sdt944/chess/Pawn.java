@@ -1,6 +1,5 @@
 package com.sdt944.chess;
 
-import android.content.Context;
 
 public class Pawn extends Chessman {
     public boolean firstMove = true;

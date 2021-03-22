@@ -1,6 +1,5 @@
 package com.sdt944.chess;
 
-import android.content.Context;
 
 public class Queen extends Chessman {
 
