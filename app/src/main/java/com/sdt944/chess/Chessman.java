@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 public abstract class Chessman {
-    public enum chessmanType {
+    public enum ChessmanType {
         King,
         Queen,
         Rook,
@@ -28,7 +28,7 @@ public abstract class Chessman {
      *  ........
      *  .WHITE..
      * */
-    public enum playerColor {
+    public enum PlayerColor {
         Black,
         White
     }
@@ -36,8 +36,8 @@ public abstract class Chessman {
     private Point point;
 
     public ArrayList<Point> moves = new ArrayList<>();
-    public chessmanType type;
-    public playerColor color;
+    public ChessmanType type;
+    public PlayerColor color;
     public boolean isDead = false;
     public ImageButton button;
     public Chess parent;
@@ -45,12 +45,11 @@ public abstract class Chessman {
     public int minDimension;
 
 
-
     public ArrayList<Point> getMoves() {
         return moves;
     }
 
-    abstract void generateMoves();
+    public abstract void generateMoves();
 
     public void setPoint(Point p) {
         point = p;
@@ -82,7 +81,7 @@ public abstract class Chessman {
 
     public void moveButton(int x, int y) {
 
-        if(color == playerColor.White)
+        if (color == PlayerColor.White)
             MediaPlayer.create(parent.ctx, R.raw.chess1).start();
         else
             MediaPlayer.create(parent.ctx, R.raw.chess2).start();
@@ -98,6 +97,7 @@ public abstract class Chessman {
     public boolean isPointSafe() {
         return isPointSafe(this.getPoint());
     }
+
     public boolean isPointSafe(Point point) {
         //todo : move the same codes to a function and don't write a code more than one time
 
@@ -112,12 +112,13 @@ public abstract class Chessman {
          *  ........
          *  ........
          * */
-        int x = point.x, y = point.y - 1;
+        int x = point.x;
+        int y = point.y - 1;
         while (Point.isValid(x, y)) {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if(isThereDirectMover(x, y))
+                if (isThereDirectMover(x, y))
                     return false;
                 else
                     break;
@@ -140,7 +141,7 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if(isThereDirectMover(x, y))
+                if (isThereDirectMover(x, y))
                     return false;
                 else
                     break;
@@ -164,7 +165,7 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if(isThereDirectMover(x, y))
+                if (isThereDirectMover(x, y))
                     return false;
                 else
                     break;
@@ -188,7 +189,7 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if(isThereDirectMover(x, y))
+                if (isThereDirectMover(x, y))
                     return false;
                 else
                     break;
@@ -214,7 +215,7 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if(isThereObliqueMover(x, y))
+                if (isThereObliqueMover(x, y))
                     return false;
                 else
                     break;
@@ -239,7 +240,7 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if(isThereObliqueMover(x, y))
+                if (isThereObliqueMover(x, y))
                     return false;
                 else
                     break;
@@ -264,7 +265,7 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if(isThereObliqueMover(x, y))
+                if (isThereObliqueMover(x, y))
                     return false;
                 else
                     break;
@@ -289,7 +290,7 @@ public abstract class Chessman {
             if (parent.chessmen[x][y] != null) {
                 if (parent.chessmen[x][y].color == color)
                     break;
-                if(isThereObliqueMover(x, y))
+                if (isThereObliqueMover(x, y))
                     return false;
                 else
                     break;
@@ -304,86 +305,82 @@ public abstract class Chessman {
         y = point.y - 2;
         if (Point.isValid(x, y) && parent.chessmen[x][y] != null
                 && parent.chessmen[x][y].color != color
-                && parent.chessmen[x][y].type == chessmanType.Knight)
+                && parent.chessmen[x][y].type == ChessmanType.Knight)
             return false;
         x = point.x - 1;
         y = point.y + 2;
         if (Point.isValid(x, y) && parent.chessmen[x][y] != null
                 && parent.chessmen[x][y].color != color
-                && parent.chessmen[x][y].type == chessmanType.Knight)
+                && parent.chessmen[x][y].type == ChessmanType.Knight)
             return false;
         x = point.x - 2;
         y = point.y - 1;
         if (Point.isValid(x, y) && parent.chessmen[x][y] != null
                 && parent.chessmen[x][y].color != color
-                && parent.chessmen[x][y].type == chessmanType.Knight)
+                && parent.chessmen[x][y].type == ChessmanType.Knight)
             return false;
         x = point.x - 2;
         y = point.y + 1;
         if (Point.isValid(x, y) && parent.chessmen[x][y] != null
                 && parent.chessmen[x][y].color != color
-                && parent.chessmen[x][y].type == chessmanType.Knight)
+                && parent.chessmen[x][y].type == ChessmanType.Knight)
             return false;
         x = point.x + 1;
         y = point.y - 2;
         if (Point.isValid(x, y) && parent.chessmen[x][y] != null
                 && parent.chessmen[x][y].color != color
-                && parent.chessmen[x][y].type == chessmanType.Knight)
+                && parent.chessmen[x][y].type == ChessmanType.Knight)
             return false;
         x = point.x + 1;
         y = point.y + 2;
         if (Point.isValid(x, y) && parent.chessmen[x][y] != null
                 && parent.chessmen[x][y].color != color
-                && parent.chessmen[x][y].type == chessmanType.Knight)
+                && parent.chessmen[x][y].type == ChessmanType.Knight)
             return false;
         x = point.x - 2;
         y = point.y - 1;
         if (Point.isValid(x, y) && parent.chessmen[x][y] != null
                 && parent.chessmen[x][y].color != color
-                && parent.chessmen[x][y].type == chessmanType.Knight)
+                && parent.chessmen[x][y].type == ChessmanType.Knight)
             return false;
         x = point.x + 2;
         y = point.y + 1;
         if (Point.isValid(x, y) && parent.chessmen[x][y] != null
                 && parent.chessmen[x][y].color != color
-                && parent.chessmen[x][y].type == chessmanType.Knight)
+                && parent.chessmen[x][y].type == ChessmanType.Knight)
             return false;
 
         //                pawn checks
-        if (color == playerColor.Black)
+        if (color == PlayerColor.Black)
             y = point.y + 1;
         else
             y = point.y - 1;
         x = point.x - 1;
         if (Point.isValid(x, y) && parent.chessmen[x][y] != null
                 && parent.chessmen[x][y].color != color
-                && parent.chessmen[x][y].type == chessmanType.Pawn)
+                && parent.chessmen[x][y].type == ChessmanType.Pawn)
             return false;
         x = point.x + 1;
         if (Point.isValid(x, y) && parent.chessmen[x][y] != null
                 && parent.chessmen[x][y].color != color
-                && parent.chessmen[x][y].type == chessmanType.Pawn)
+                && parent.chessmen[x][y].type == ChessmanType.Pawn)
             return false;
 
         //                king checks
         for (int i = point.x - 1; i < point.x + 2; i++)
             for (int j = point.y - 1; j < point.y + 2; j++)
-                if (Point.isValid(i, j))
-                    if(!(point.x == i && point.y == j))
-                        if(parent.chessmen[i][j] != null)
-                            if(parent.chessmen[i][j].color != color)
-                                if(parent.chessmen[i][j].type == chessmanType.King)
-                                    return false;
+                if (Point.isValid(i, j) && !(point.x == i && point.y == j) && parent.chessmen[i][j] != null && parent.chessmen[i][j].color != color && parent.chessmen[i][j].type == ChessmanType.King)
+                    return false;
 
         return true;
     }
 
     private boolean isThereDirectMover(int x, int y) {
-        return parent.chessmen[x][y] != null && (parent.chessmen[x][y].type == chessmanType.Queen || parent.chessmen[x][y].type == chessmanType.Rook);
+        return parent.chessmen[x][y] != null && (parent.chessmen[x][y].type == ChessmanType.Queen || parent.chessmen[x][y].type == ChessmanType.Rook);
     }
 
     private boolean isThereObliqueMover(int x, int y) {
-        return parent.chessmen[x][y] != null && (parent.chessmen[x][y].type == chessmanType.Queen || parent.chessmen[x][y].type == chessmanType.Bishop);
+        return parent.chessmen[x][y] != null && (parent.chessmen[x][y].type == ChessmanType.Queen || parent.chessmen[x][y].type == ChessmanType.Bishop);
     }
 
     public void addVerticalMovePoints() {
@@ -399,7 +396,7 @@ public abstract class Chessman {
          * */
         Point p = new Point(point.x, point.y - 1);
         while (p.isValid()) {
-            if (parent.chessmen[p.x][p.y]==null) {
+            if (parent.chessmen[p.x][p.y] == null) {
                 if (!moves.contains(p))
                     moves.add(p);
                 p = new Point(p.x, p.y - 1);
@@ -424,7 +421,7 @@ public abstract class Chessman {
          * */
         p = new Point(point.x, point.y + 1);
         while (p.isValid()) {
-            if (parent.chessmen[p.x][p.y]==null) {
+            if (parent.chessmen[p.x][p.y] == null) {
                 if (!moves.contains(p))
                     moves.add(p);
                 p = new Point(p.x, p.y + 1);
@@ -452,10 +449,10 @@ public abstract class Chessman {
          * */
         Point p = new Point(point.x - 1, point.y);
         while (p.isValid()) {
-            if (parent.chessmen[p.x][p.y]==null) {
+            if (parent.chessmen[p.x][p.y] == null) {
                 if (!moves.contains(p))
                     moves.add(p);
-                p = new Point(p.x - 1, p.y );
+                p = new Point(p.x - 1, p.y);
                 continue;
             }
             if (parent.chessmen[p.x][p.y].color != color) {
@@ -477,7 +474,7 @@ public abstract class Chessman {
          * */
         p = new Point(point.x + 1, point.y);
         while (p.isValid()) {
-            if (parent.chessmen[p.x][p.y]==null) {
+            if (parent.chessmen[p.x][p.y] == null) {
                 if (!moves.contains(p))
                     moves.add(p);
                 p = new Point(p.x + 1, p.y);
@@ -520,12 +517,13 @@ public abstract class Chessman {
          *  ........
          *  ........
          * */
-        int i = point.x - 1, j = point.y - 1;
+        int i = point.x - 1;
+        int j = point.y - 1;
         while (Point.isValid(i, j)) {
             Point p = new Point(i, j);
             i--;
             j--;
-            if (parent.chessmen[p.x][p.y]==null) {
+            if (parent.chessmen[p.x][p.y] == null) {
                 if (!moves.contains(p))
                     moves.add(p);
                 continue;
@@ -553,7 +551,7 @@ public abstract class Chessman {
             Point p = new Point(i, j);
             i++;
             j++;
-            if (parent.chessmen[p.x][p.y]==null) {
+            if (parent.chessmen[p.x][p.y] == null) {
                 if (!moves.contains(p))
                     moves.add(p);
                 continue;
@@ -578,12 +576,13 @@ public abstract class Chessman {
          *  ........
          *  ........
          * */
-        int i = point.x + 1, j = point.y - 1;
+        int i = point.x + 1;
+        int j = point.y - 1;
         while (Point.isValid(i, j)) {
             Point p = new Point(i, j);
             i++;
             j--;
-            if (parent.chessmen[p.x][p.y]==null) {
+            if (parent.chessmen[p.x][p.y] == null) {
                 if (!moves.contains(p))
                     moves.add(p);
                 continue;
@@ -611,7 +610,7 @@ public abstract class Chessman {
             Point p = new Point(i, j);
             i--;
             j++;
-            if (parent.chessmen[p.x][p.y]==null) {
+            if (parent.chessmen[p.x][p.y] == null) {
                 if (!moves.contains(p))
                     moves.add(p);
                 continue;
@@ -626,7 +625,7 @@ public abstract class Chessman {
     }
 
     public void add1StepForwardMovePoints() {
-        if (color == playerColor.Black) {
+        if (color == PlayerColor.Black) {
             addForwardMovePoints(1);
             return;
         }
@@ -634,7 +633,7 @@ public abstract class Chessman {
     }
 
     public void add2StepForwardMovePoints() {
-        if (color == playerColor.Black) {
+        if (color == PlayerColor.Black) {
             addForwardMovePoints(2);
             return;
         }

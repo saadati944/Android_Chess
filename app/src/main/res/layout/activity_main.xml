@@ -11,7 +11,7 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="btnPlay_click"
+        android:onClick="btnPlayClick"
         android:text="@string/playButton"
         android:textColor="#000"
         android:textStyle="bold"

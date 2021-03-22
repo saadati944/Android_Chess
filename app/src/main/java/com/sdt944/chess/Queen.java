@@ -3,21 +3,21 @@ package com.sdt944.chess;
 
 public class Queen extends Chessman {
 
-    public Queen(Point p, playerColor color, int minDimension, Chess parent) {
+    public Queen(Point p, PlayerColor color, int minDimension, Chess parent) {
         this.parent = parent;
         setPoint(p);
-        type = chessmanType.Queen;
+        type = ChessmanType.Queen;
         this.color = color;
         this.minDimension = minDimension;
     }
 
     @Override
     public void createButton() {
-        createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.queenb,parent.ctx.getTheme()):parent.ctx.getResources().getDrawable(R.drawable.queenw,parent.ctx.getTheme()), minDimension, parent.ctx);
+        createButton(color == PlayerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.queenb, parent.ctx.getTheme()) : parent.ctx.getResources().getDrawable(R.drawable.queenw, parent.ctx.getTheme()), minDimension, parent.ctx);
     }
 
     @Override
-    void generateMoves() {
+    public void generateMoves() {
         moves.clear();
         addVerticalMovePoints();
         addHorizontalMovePoints();

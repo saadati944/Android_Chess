@@ -19,9 +19,13 @@ public class ChessBoard extends AppCompatActivity {
     public FrameLayout boardLayout;
 
     public Chess chess = null;
-    public int displayWidth, displayHeight, displayMinDimensions;
 
-    public int blackColor, whiteColor;
+    public int displayWidth;
+    public int displayHeight;
+    public int displayMinDimensions;
+
+    public int blackColor;
+    public int whiteColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +50,14 @@ public class ChessBoard extends AppCompatActivity {
         displayWidth = displayMetrics.widthPixels;
         displayMinDimensions = Math.min(displayWidth, displayHeight);
 
-        boardLayout = (FrameLayout)findViewById(R.id.boardLayout);
+        boardLayout = (FrameLayout) findViewById(R.id.boardLayout);
 
         boardLayout.getLayoutParams().height = displayMinDimensions;
         boardLayout.getLayoutParams().width = displayMinDimensions;
 
         if (Storage.chess == null) {
             Storage.chess = chess = new Chess(this, displayMinDimensions, boardLayout);
-        }
-        else {
+        } else {
             chess = Storage.chess;
             chess.changeLayout(this, displayMinDimensions, boardLayout);
         }
@@ -65,14 +68,16 @@ public class ChessBoard extends AppCompatActivity {
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() != MotionEvent.ACTION_DOWN)
             return false;
-        int t = displayMinDimensions/8;
+        int t = displayMinDimensions / 8;
         //chess.onBoardClick((int)event.getX() % (displayMinDimensions/8), (int)event.getY()%(displayMinDimensions/8));
-        chess.onBoardClick(((int)event.getX())/t, ((int)event.getY())/t);
+        chess.onBoardClick(((int) event.getX()) / t, ((int) event.getY()) / t);
         return true;
     }
+
     public void showPromotionActivity() {
         startActivityForResult(new Intent(this, PawnPromotion.class), 1);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -87,13 +92,19 @@ public class ChessBoard extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setMessage(getResources().getString(R.string.saveBoardPrompt))
                 .setCancelable(false)
-                .setPositiveButton(getResources().getString(R.string.yes), (DialogInterface.OnClickListener) (dialog, id) -> {finish();})
-                .setNegativeButton(getResources().getString(R.string.no), (DialogInterface.OnClickListener) (dialog, id) -> {Storage.chess = null; finish();})
+                .setPositiveButton(getResources().getString(R.string.yes), (DialogInterface.OnClickListener) (dialog, id) -> {
+                    finish();
+                })
+                .setNegativeButton(getResources().getString(R.string.no), (DialogInterface.OnClickListener) (dialog, id) -> {
+                    Storage.chess = null;
+                    finish();
+                })
                 .show();
     }
-    public void animateTurnChange(Chessman.playerColor turn) {
+
+    public void animateTurnChange(Chessman.PlayerColor turn) {
         ValueAnimator colorAnimation;
-        if (turn == Chessman.playerColor.White)
+        if (turn == Chessman.PlayerColor.White)
             colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), whiteColor, blackColor);
         else
             colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), blackColor, whiteColor);

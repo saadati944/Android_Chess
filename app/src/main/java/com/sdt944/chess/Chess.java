@@ -13,10 +13,10 @@ import java.util.ArrayList;
 public class Chess {
     public ArrayList<Chessman> deadMen = new ArrayList<>();
     public Chessman[/*column - x*/][/*row - y*/] chessmen = new Chessman[8][8];
-    public Chessman.playerColor whichPlayerTurn = Chessman.playerColor.Black;
+    public Chessman.PlayerColor whichPlayerTurn = Chessman.PlayerColor.Black;
     public Point lastManPoint = null;
     public Context ctx;
-    public int minDimension=0;
+    public int minDimension = 0;
     private Chessman manToPromote = null;
     private FrameLayout boardLayout = null;
 
@@ -27,7 +27,6 @@ public class Chess {
 
     public King whiteKing = null;
     public King blackKing = null;
-
 
 
     public Chess(Context ctx, int minDimension, FrameLayout boardLayout) {
@@ -46,44 +45,44 @@ public class Chess {
          * */
 
         //first row
-        chessmen[0][0] = new Rook(new Point(0, 0), Chessman.playerColor.Black, minDimension, this);
-        chessmen[1][0] = new Knight(new Point(1, 0), Chessman.playerColor.Black, minDimension, this);
-        chessmen[2][0] = new Bishop(new Point(2, 0), Chessman.playerColor.Black, minDimension, this);
-        chessmen[3][0] = new Queen(new Point(3, 0), Chessman.playerColor.Black, minDimension, this);
-        chessmen[4][0] = blackKing = new King(new Point(4, 0), Chessman.playerColor.Black, minDimension, this);
-        chessmen[5][0] = new Bishop(new Point(5, 0), Chessman.playerColor.Black, minDimension, this);
-        chessmen[6][0] = new Knight(new Point(6, 0), Chessman.playerColor.Black, minDimension, this);
-        chessmen[7][0] = new Rook(new Point(7, 0), Chessman.playerColor.Black, minDimension, this);
+        chessmen[0][0] = new Rook(new Point(0, 0), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[1][0] = new Knight(new Point(1, 0), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[2][0] = new Bishop(new Point(2, 0), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[3][0] = new Queen(new Point(3, 0), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[4][0] = blackKing = new King(new Point(4, 0), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[5][0] = new Bishop(new Point(5, 0), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[6][0] = new Knight(new Point(6, 0), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[7][0] = new Rook(new Point(7, 0), Chessman.PlayerColor.Black, minDimension, this);
 
         //second row
-        chessmen[0][1] = new Pawn(new Point(0, 1), Chessman.playerColor.Black, minDimension, this);
-        chessmen[1][1] = new Pawn(new Point(1, 1), Chessman.playerColor.Black, minDimension, this);
-        chessmen[2][1] = new Pawn(new Point(2, 1), Chessman.playerColor.Black, minDimension, this);
-        chessmen[3][1] = new Pawn(new Point(3, 1), Chessman.playerColor.Black, minDimension, this);
-        chessmen[4][1] = new Pawn(new Point(4, 1), Chessman.playerColor.Black, minDimension, this);
-        chessmen[5][1] = new Pawn(new Point(5, 1), Chessman.playerColor.Black, minDimension, this);
-        chessmen[6][1] = new Pawn(new Point(6, 1), Chessman.playerColor.Black, minDimension, this);
-        chessmen[7][1] = new Pawn(new Point(7, 1), Chessman.playerColor.Black, minDimension, this);
+        chessmen[0][1] = new Pawn(new Point(0, 1), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[1][1] = new Pawn(new Point(1, 1), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[2][1] = new Pawn(new Point(2, 1), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[3][1] = new Pawn(new Point(3, 1), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[4][1] = new Pawn(new Point(4, 1), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[5][1] = new Pawn(new Point(5, 1), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[6][1] = new Pawn(new Point(6, 1), Chessman.PlayerColor.Black, minDimension, this);
+        chessmen[7][1] = new Pawn(new Point(7, 1), Chessman.PlayerColor.Black, minDimension, this);
 
         //seventh row
-        chessmen[0][6] = new Pawn(new Point(0, 6), Chessman.playerColor.White, minDimension, this);
-        chessmen[1][6] = new Pawn(new Point(1, 6), Chessman.playerColor.White, minDimension, this);
-        chessmen[2][6] = new Pawn(new Point(2, 6), Chessman.playerColor.White, minDimension, this);
-        chessmen[3][6] = new Pawn(new Point(3, 6), Chessman.playerColor.White, minDimension, this);
-        chessmen[4][6] = new Pawn(new Point(4, 6), Chessman.playerColor.White, minDimension, this);
-        chessmen[5][6] = new Pawn(new Point(5, 6), Chessman.playerColor.White, minDimension, this);
-        chessmen[6][6] = new Pawn(new Point(6, 6), Chessman.playerColor.White, minDimension, this);
-        chessmen[7][6] = new Pawn(new Point(7, 6), Chessman.playerColor.White, minDimension, this);
+        chessmen[0][6] = new Pawn(new Point(0, 6), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[1][6] = new Pawn(new Point(1, 6), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[2][6] = new Pawn(new Point(2, 6), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[3][6] = new Pawn(new Point(3, 6), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[4][6] = new Pawn(new Point(4, 6), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[5][6] = new Pawn(new Point(5, 6), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[6][6] = new Pawn(new Point(6, 6), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[7][6] = new Pawn(new Point(7, 6), Chessman.PlayerColor.White, minDimension, this);
 
         //eighth row
-        chessmen[0][7] = new Rook(new Point(0, 7), Chessman.playerColor.White, minDimension, this);
-        chessmen[1][7] = new Knight(new Point(1, 7), Chessman.playerColor.White, minDimension, this);
-        chessmen[2][7] = new Bishop(new Point(2, 7), Chessman.playerColor.White, minDimension, this);
-        chessmen[3][7] = new Queen(new Point(3, 7), Chessman.playerColor.White, minDimension, this);
-        chessmen[4][7] = whiteKing = new King(new Point(4, 7), Chessman.playerColor.White, minDimension, this);
-        chessmen[5][7] = new Bishop(new Point(5, 7), Chessman.playerColor.White, minDimension, this);
-        chessmen[6][7] = new Knight(new Point(6, 7), Chessman.playerColor.White, minDimension, this);
-        chessmen[7][7] = new Rook(new Point(7, 7), Chessman.playerColor.White, minDimension, this);
+        chessmen[0][7] = new Rook(new Point(0, 7), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[1][7] = new Knight(new Point(1, 7), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[2][7] = new Bishop(new Point(2, 7), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[3][7] = new Queen(new Point(3, 7), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[4][7] = whiteKing = new King(new Point(4, 7), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[5][7] = new Bishop(new Point(5, 7), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[6][7] = new Knight(new Point(6, 7), Chessman.PlayerColor.White, minDimension, this);
+        chessmen[7][7] = new Rook(new Point(7, 7), Chessman.PlayerColor.White, minDimension, this);
 
         for (int i = 0; i < 8; i++)
             for (int j = 2; j < 6; j++) {
@@ -91,18 +90,20 @@ public class Chess {
             }
 
         addMenToBoard(boardLayout);
-        Chessman.playerColor whichPlayerTurn = Chessman.playerColor.Black;
+        whichPlayerTurn = Chessman.PlayerColor.Black;
         changeTurn();
     }
+
     public void changeLayout(Context ctx, int minDimension, FrameLayout boardLayout) {
         setLayoutParams(ctx, minDimension, boardLayout);
         addMenToBoard(boardLayout);
-        if(whichPlayerTurn == Chessman.playerColor.White)
-            whichPlayerTurn = Chessman.playerColor.Black;
+        if (whichPlayerTurn == Chessman.PlayerColor.White)
+            whichPlayerTurn = Chessman.PlayerColor.Black;
         else
-            whichPlayerTurn = Chessman.playerColor.White;
+            whichPlayerTurn = Chessman.PlayerColor.White;
         changeTurn();
     }
+
     private void setLayoutParams(Context ctx, int minDimension, FrameLayout boardLayout) {
         this.ctx = ctx;
         this.minDimension = minDimension;
@@ -110,7 +111,7 @@ public class Chess {
     }
 
     public void onManClick(Chessman man) {
-        if(gameEnd)
+        if (gameEnd)
             return;
         if (man.color == whichPlayerTurn) {
             lastManPoint = man.getPoint();
@@ -124,7 +125,7 @@ public class Chess {
     }
 
     public void onBoardClick(int x, int y) {
-        if(gameEnd)
+        if (gameEnd)
             return;
         if (lastManPoint == null)
             return;
@@ -134,27 +135,12 @@ public class Chess {
         }
     }
 
-
-    public boolean checkPoint(Point pt, Chessman man) {
-        return checkPoint(pt.x, pt.y, man);
-    }
-
-    public boolean checkPoint(int x, int y, Chessman man) {
-        if (chessmen[x][y] == null)
-            return true;
-
-        if (chessmen[x][y].color == man.color)
-            return false;
-
-        return true;
-    }
-
     public void doMove(Point from, Point to) {
-        if (move(from.x, from.y, to.x, to.y)){
+        if (move(from.x, from.y, to.x, to.y)) {
             resetValidMoveButtons();
-            if (chessmen[to.x][to.y].type == Chessman.chessmanType.Pawn &&
-                    (chessmen[to.x][to.y].color == Chessman.playerColor.White && chessmen[to.x][to.y].getPoint().y == 0 //white reaches end
-                    || chessmen[to.x][to.y].color == Chessman.playerColor.Black && chessmen[to.x][to.y].getPoint().y == 7)) //black reaches end
+            if (chessmen[to.x][to.y].type == Chessman.ChessmanType.Pawn &&
+                    (chessmen[to.x][to.y].color == Chessman.PlayerColor.White && chessmen[to.x][to.y].getPoint().y == 0 //white reaches end
+                            || chessmen[to.x][to.y].color == Chessman.PlayerColor.Black && chessmen[to.x][to.y].getPoint().y == 7)) //black reaches end
                 promote(chessmen[to.x][to.y]);
             changeTurn();
             lastManPoint = null;
@@ -167,19 +153,19 @@ public class Chess {
         chessmen[xt][yt].setPoint(new Point(xt, yt));
         chessmen[xf][yf] = null;
 
-        King.kingRiskType relatedKingStatus;
-        if(chessmen[xt][yt].color == Chessman.playerColor.White)
+        King.KingRiskType relatedKingStatus;
+        if (chessmen[xt][yt].color == Chessman.PlayerColor.White)
             relatedKingStatus = validateKing(whiteKing);
         else
             relatedKingStatus = validateKing(blackKing);
 
-        if(relatedKingStatus == King.kingRiskType.Safe) {
-            if(tempMan != null)
+        if (relatedKingStatus == King.KingRiskType.Safe) {
+            if (tempMan != null)
                 kill(tempMan);
             chessmen[xt][yt].setPoint(new Point(xt, yt));
             chessmen[xt][yt].moveButton(xt, yt);
-            if(chessmen[xt][yt].type == Chessman.chessmanType.Pawn)
-                ((Pawn)chessmen[xt][yt]).firstMove = false;
+            if (chessmen[xt][yt].type == Chessman.ChessmanType.Pawn)
+                ((Pawn) chessmen[xt][yt]).firstMove = false;
             return true;
         }
 
@@ -190,24 +176,24 @@ public class Chess {
         return false;
     }
 
-    private King.kingRiskType validateKing(King k) {
+    private King.KingRiskType validateKing(King k) {
         k.generateMoves();
 
         boolean check = !k.isPointSafe();
         boolean mate = true;
 
-        for(Point p:k.moves) {
-            if(k.isPointSafe(p)) {
+        for (Point p : k.moves) {
+            if (k.isPointSafe(p)) {
                 mate = false;
                 break;
             }
         }
 
-        if(check && mate)
-            return King.kingRiskType.CheckMate;
-        if(check)
-            return King.kingRiskType.Check;
-        return King.kingRiskType.Safe;
+        if (check && mate)
+            return King.KingRiskType.CheckMate;
+        if (check)
+            return King.KingRiskType.Check;
+        return King.KingRiskType.Safe;
     }
 
     public void kill(Chessman m) {
@@ -217,24 +203,22 @@ public class Chess {
     }
 
     public void changeTurn() {
-        if (whichPlayerTurn == Chessman.playerColor.White)
-            whichPlayerTurn = Chessman.playerColor.Black;
+        if (whichPlayerTurn == Chessman.PlayerColor.White)
+            whichPlayerTurn = Chessman.PlayerColor.Black;
         else
-            whichPlayerTurn = Chessman.playerColor.White;
-        ((ChessBoard)ctx).animateTurnChange(whichPlayerTurn);
+            whichPlayerTurn = Chessman.PlayerColor.White;
+        ((ChessBoard) ctx).animateTurnChange(whichPlayerTurn);
     }
 
     public void promote(Chessman man) {
         manToPromote = man;
-        ((ChessBoard)ctx).showPromotionActivity();
+        ((ChessBoard) ctx).showPromotionActivity();
     }
-    public void promotionResault(Chessman.chessmanType toType) {
+
+    public void promotionResault(Chessman.ChessmanType toType) {
 
         Chessman newType = null;
-        switch (toType)
-        {
-            case Pawn:
-                return;
+        switch (toType) {
             case Queen:
                 newType = new Queen(manToPromote.getPoint(), manToPromote.color, minDimension, this);
                 break;
@@ -247,9 +231,11 @@ public class Chess {
             case Knight:
                 newType = new Knight(manToPromote.getPoint(), manToPromote.color, minDimension, this);
                 break;
+            default:
+                return;
         }
         newType.createButton();
-        ((ViewGroup)manToPromote.button.getParent()).removeView(manToPromote.button);
+        ((ViewGroup) manToPromote.button.getParent()).removeView(manToPromote.button);
         chessmen[manToPromote.getPoint().x][manToPromote.getPoint().y] = newType;
         boardLayout.addView(newType.button);
     }
@@ -274,7 +260,7 @@ public class Chess {
         lp.setMargins(width * p.x, width * p.y, minDimension - (width * p.x + width), minDimension - (width * p.y + width));
 
         btn.setLayoutParams(lp);
-        btn.setBackground(ctx.getResources().getDrawable(R.drawable.point,ctx.getTheme()));
+        btn.setBackground(ctx.getResources().getDrawable(R.drawable.point, ctx.getTheme()));
 
         btn.setOnClickListener(v -> {
             onBoardClick(p.x, p.y);
@@ -285,13 +271,14 @@ public class Chess {
     }
 
     public void addValidMoveButtons(ArrayList<Point> validMoves) {
-        for (Point p:validMoves) {
+        for (Point p : validMoves) {
             createValidMoveButton(p);
         }
     }
+
     public void resetValidMoveButtons() {
-        for (View v:validMoveButtons)
-            ((ViewGroup)v.getParent()).removeView(v);
+        for (View v : validMoveButtons)
+            ((ViewGroup) v.getParent()).removeView(v);
 
         validMoveButtons.clear();
     }

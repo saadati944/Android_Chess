@@ -2,20 +2,21 @@ package com.sdt944.chess;
 
 
 public class Knight extends Chessman {
-    public Knight(Point p, playerColor color, int minDimension, Chess parent) {
+    public Knight(Point p, PlayerColor color, int minDimension, Chess parent) {
         this.parent = parent;
         setPoint(p);
-        type = chessmanType.Knight;
+        type = ChessmanType.Knight;
         this.color = color;
         this.minDimension = minDimension;
     }
 
     @Override
     public void createButton() {
-        createButton(color == playerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.knightb,parent.ctx.getTheme()):parent.ctx.getResources().getDrawable(R.drawable.knightw,parent.ctx.getTheme()), minDimension, parent.ctx);
+        createButton(color == PlayerColor.Black ? parent.ctx.getResources().getDrawable(R.drawable.knightb, parent.ctx.getTheme()) : parent.ctx.getResources().getDrawable(R.drawable.knightw, parent.ctx.getTheme()), minDimension, parent.ctx);
     }
+
     @Override
-    void generateMoves() {
+    public void generateMoves() {
         moves.clear();
         addLMovePoints();
     }

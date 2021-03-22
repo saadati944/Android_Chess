@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void btnPlay_click(View view) {
+    public void btnPlayClick(View view) {
         Intent switchActivityIntent = new Intent(this, ChessBoard.class);
         startActivity(switchActivityIntent);
     }
