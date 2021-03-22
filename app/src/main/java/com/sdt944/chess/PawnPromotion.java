@@ -30,7 +30,7 @@ public class PawnPromotion extends AppCompatActivity {
             select(Chessman.ChessmanType.Queen);
     }
 
-    void select(Chessman.ChessmanType newType) {
+    private void select(Chessman.ChessmanType newType) {
         Storage.result = newType;
         Intent returnIntent = new Intent();
         setResult(Activity.RESULT_CANCELED, returnIntent);
