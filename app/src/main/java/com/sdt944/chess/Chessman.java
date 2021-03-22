@@ -365,6 +365,17 @@ public abstract class Chessman {
                 && parent.chessmen[x][y].color != color
                 && parent.chessmen[x][y].type == chessmanType.Pawn)
             return false;
+
+        //                king checks
+        for (int i = point.x - 1; i < point.x + 2; i++)
+            for (int j = point.y - 1; j < point.y + 2; j++)
+                if (Point.isValid(i, j))
+                    if(!(point.x == i && point.y == j))
+                        if(parent.chessmen[i][j] != null)
+                            if(parent.chessmen[i][j].color != color)
+                                if(parent.chessmen[i][j].type == chessmanType.King)
+                                    return false;
+
         return true;
     }
 
