@@ -39,8 +39,8 @@ public class ChessBoard extends AppCompatActivity {
         backgroundLayout = findViewById(R.id.backgroundLayout);
 
         //initiate black and white colors
-        blackColor = getResources().getColor(R.color.white, getTheme());
-        whiteColor = getResources().getColor(R.color.black, getTheme());
+        blackColor = getResources().getColor(R.color.white);
+        whiteColor = getResources().getColor(R.color.black);
 
 
         //set display params
@@ -50,7 +50,7 @@ public class ChessBoard extends AppCompatActivity {
         displayWidth = displayMetrics.widthPixels;
         displayMinDimensions = Math.min(displayWidth, displayHeight);
 
-        boardLayout = (FrameLayout) findViewById(R.id.boardLayout);
+        boardLayout = findViewById(R.id.boardLayout);
 
         boardLayout.getLayoutParams().height = displayMinDimensions;
         boardLayout.getLayoutParams().width = displayMinDimensions;
@@ -92,10 +92,10 @@ public class ChessBoard extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setMessage(getResources().getString(R.string.saveBoardPrompt))
                 .setCancelable(false)
-                .setPositiveButton(getResources().getString(R.string.yes), (DialogInterface.OnClickListener) (dialog, id) -> {
+                .setPositiveButton(getResources().getString(R.string.yes), (dialog, id) -> {
                     finish();
                 })
-                .setNegativeButton(getResources().getString(R.string.no), (DialogInterface.OnClickListener) (dialog, id) -> {
+                .setNegativeButton(getResources().getString(R.string.no), (dialog, id) -> {
                     Storage.chess = null;
                     finish();
                 })

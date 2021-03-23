@@ -23,7 +23,7 @@ public class Chess {
     public ArrayList<View> validMoveButtons = new ArrayList<>();
 
     //todo : try to remove this property if not needed
-    private boolean gameEnd = false;
+    private final boolean gameEnd = false;
 
     public King whiteKing = null;
     public King blackKing = null;
