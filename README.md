@@ -5,7 +5,8 @@
 Chess game in android
 written with java
 
-Minimum sdk version : 29
+Minimum sdk version : 24
+Target sdk version : 29
 
 ![screenshot](./screenshot.png)
 
